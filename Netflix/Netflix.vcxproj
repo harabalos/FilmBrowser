@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -140,27 +140,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Action.cpp" />
-    <ClCompile Include="Adventure.cpp" />
-    <ClCompile Include="Crime.cpp" />
-    <ClCompile Include="Drama.cpp" />
-    <ClCompile Include="Fantasy.cpp" />
+    <ClCompile Include="Film.cpp" />
     <ClCompile Include="FilmBrowser.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="History.cpp" />
-    <ClCompile Include="SciFi.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Adventure.h" />
     <ClInclude Include="config.h" />
-    <ClInclude Include="Drama.h" />
-    <ClInclude Include="Fantasy.h" />
     <ClInclude Include="FilmBrowser.h" />
-    <ClInclude Include="FilmObject.h" />
-    <ClInclude Include="Crime.h" />
-    <ClInclude Include="Action.h" />
-    <ClInclude Include="History.h" />
-    <ClInclude Include="SciFi.h" />
+    <ClInclude Include="Film.h" />
+    <ClInclude Include="Widget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -21,25 +21,7 @@
     <ClCompile Include="FilmBrowser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Drama.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="History.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Crime.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Adventure.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Action.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SciFi.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Fantasy.cpp">
+    <ClCompile Include="Film.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,28 +32,10 @@
     <ClInclude Include="FilmBrowser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FilmObject.h">
+    <ClInclude Include="Film.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Drama.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="History.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Crime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Adventure.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Action.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SciFi.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Fantasy.h">
+    <ClInclude Include="Widget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
