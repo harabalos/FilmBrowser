@@ -2,16 +2,15 @@
 #include "graphics.h"
 #include "config.h"
 #include "Film.h"
+#include "Button.h"
 
 void FilmBrowser::update()
 {
 
-    fightClub = new Film("Fight Club", "1999", "Daviv Fincher", "Brad Pitt", "Drama", "BLABLABLABLABALBLA BLABLABABLABLABLABL ABALBLA BLABLABABLA BLABLABLAB ALBLABLABLABABLA BLABLABLABAL LABLABLABA");
-   
-    if (fightClub)
-    {
-        fightClub->update();
-    }
+    initializeVectorFilms();
+
+    allFilms[5]->update();
+
 }
 
 void FilmBrowser::draw()
@@ -33,15 +32,13 @@ void FilmBrowser::draw()
     graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 
     //draw film
+    initializeVectorFilms();
+    allFilms[5]->draw();
+    button1->draw();
+    button2->draw();
 
-    if (fightClub)
-    {
-        fightClub->draw();
-    };
+
     
-
-    
-
 }
 
 void FilmBrowser::initializeVectorFilms()
@@ -61,9 +58,6 @@ void FilmBrowser::init()
 {
 }
 
-void FilmBrowser::initializeVectorFilms()
-{
-}
 
 FilmBrowser::FilmBrowser()
 {
@@ -71,7 +65,13 @@ FilmBrowser::FilmBrowser()
 
 FilmBrowser::~FilmBrowser()
 {
-    if (fightClub) {
-        delete fightClub;
+    if (allFilms[5]) {
+        delete allFilms[5];
+    }
+    if (button1) {
+        delete button1;
+    }
+    if (button2) {
+        delete button2;
     }
 }

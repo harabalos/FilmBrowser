@@ -2,6 +2,8 @@
 #include "graphics.h"
 #include "config.h"
 
+
+
 void Film::update()
 {
 }
@@ -10,7 +12,7 @@ void Film::draw()
 {
 	graphics::Brush br;
 	init(0);
-	graphics::drawText(10, 250, 40, getName(), br);
+	graphics::drawText(10, 250, 35, getName(), br);
 	init(1);
 	graphics::drawText(10, 320, 16, "Director:", br);
 	graphics::drawText(150, 320, 16, getDirector(), br);
@@ -32,6 +34,10 @@ void Film::init(int choice)
 	else if(choice == 1)
 	{
 		graphics::setFont(ASSET_PATH"OpenSans-Regular.ttf");
+	}
+	else if (choice == 2)
+	{
+		graphics::setFont(ASSET_PATH"OpenSans-Light.ttf");
 	}
 
 }
