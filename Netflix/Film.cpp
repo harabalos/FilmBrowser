@@ -1,6 +1,7 @@
 #include "Film.h"
 #include "graphics.h"
 #include "config.h"
+#include "Button.h"
 
 
 
@@ -22,6 +23,8 @@ void Film::draw()
 	graphics::drawText(150, 360, 16, getProductionDate(), br);
 	graphics::drawText(10, 400, 16, "Summary:", br);
 	graphics::drawText(10, 420, 16, getSummary(), br);
+	getFilmGenre().draw();
+	
 
 }
 
@@ -42,7 +45,7 @@ void Film::init(int choice)
 
 }
 
-Film::Film(std::string name, std::string productionDate, std::string director, std::string protagonist, std::string filmGenre, std::string summary)
+Film::Film(std::string name, std::string productionDate, std::string director, std::string protagonist, Button filmGenre, std::string summary)
 	:name{ name }, productionDate{ productionDate }, director{ director }, protagonist{ protagonist }, filmGenre{ filmGenre }, summary{ summary } {}
 
 Film::~Film()
@@ -68,7 +71,7 @@ std::string Film::getProtagonist()
 	return protagonist;
 }
 
-std::string Film::getFilmGenre()
+Button Film::getFilmGenre()
 {
 	return filmGenre;
 }

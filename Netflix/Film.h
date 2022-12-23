@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Button.h"
 using namespace std;
 
 
@@ -11,12 +12,12 @@ private:
 	string productionDate;
 	string director;
 	string protagonist;
-	string filmGenre;
+	Button filmGenre;
 	string summary;
 
 
 public:
-	Film(string name, string productionDate, string director, string protagonist, string filmGenre,string summary);
+	Film(string name, string productionDate, string director, string protagonist, Button filmGenre,string summary);
 	~Film();
 
 	void update();
@@ -26,6 +27,6 @@ public:
 	string getName();
 	string getDirector();
 	string getProtagonist();
-	string getFilmGenre();
+	Button getFilmGenre();
 	string getSummary();
 };
