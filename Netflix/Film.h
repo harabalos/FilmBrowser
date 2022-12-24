@@ -8,6 +8,8 @@ using namespace std;
 class Film
 {
 private:
+	float m_pos[2];
+
 	string name; 
 	string productionDate;
 	string director;
@@ -15,7 +17,7 @@ private:
 	Button filmGenre;
 	string summary;
 
-
+	bool m_highlighted = false;
 public:
 	Film(string name, string productionDate, string director, string protagonist, Button filmGenre,string summary);
 	~Film();
@@ -29,4 +31,12 @@ public:
 	string getProtagonist();
 	Button getFilmGenre();
 	string getSummary();
+
+	void setX(float x) { m_pos[0] = x; };
+	void setY(float y) { m_pos[1] = y; };
+
+	void setHighlight(bool h) { m_highlighted = h; };
+
+	bool contains(float x, float y);
+
 };

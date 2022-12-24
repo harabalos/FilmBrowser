@@ -31,6 +31,4 @@ void Button::draw()
 		graphics::setFont(ASSET_PATH"OpenSans-Light.ttf");
 		graphics::drawText((x_pos - 15)+(i*60), y_pos + 5, 10, genre[i], br);
 	}
-
-
 }

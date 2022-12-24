@@ -12,12 +12,23 @@ void Film::update()
 void Film::draw(int i)
 {
 	graphics::Brush br;
+
+	float h = 1.0f * m_highlighted;
+
+
+	br.fill_color[0] = h;
+	br.fill_color[1] = h;
+	br.fill_color[2] = h;
+	br.outline_opacity = 0.0f;
+	graphics::drawRect(m_pos[0], m_pos[1], 102, 136, br);
+
+
 	br.fill_color[0] = 1.0f;
-	br.fill_color[0] = 1.0f;
-	br.fill_color[0] = 1.0f;
+	br.fill_color[1] = 1.0f;
+	br.fill_color[2] = 1.0f;
 	br.fill_opacity = 1.0f;
 	br.texture = ASSET_PATH+std::string("pic" + to_string(i) + ".png");
-	graphics::drawRect(110 + (i*96), 100, 96, 128, br);
+	graphics::drawRect(m_pos[0], m_pos[1], 96, 128, br);
 	
 	
 	
@@ -88,4 +99,9 @@ Button Film::getFilmGenre()
 std::string Film::getSummary()
 {
 	return summary;
+}
+
+bool Film::contains(float x, float y)
+{
+	return distance(x, y, m_pos[0], m_pos[1]) < 50;
 }

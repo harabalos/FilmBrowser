@@ -9,7 +9,6 @@ void update(float ms)
     fb->update();
 }
 
-
 void draw()
 {
     FilmBrowser* fb = FilmBrowser::getInstance();
@@ -23,14 +22,12 @@ int main(int argc,char ** argv)
 
     graphics::createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "FilmBrowser");
 
-
     graphics::setDrawFunction(draw);
     graphics::setUpdateFunction(update);
 
     graphics::setCanvasSize(CANVAS_WIDTH, CANVAS_HEIGHT);
     graphics::setCanvasScaleMode(graphics::CANVAS_SCALE_FIT);
-
-   
+    
     graphics::startMessageLoop();
     FilmBrowser::releaseInstance();
     return 0;

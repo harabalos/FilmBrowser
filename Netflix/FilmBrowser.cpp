@@ -5,17 +5,35 @@
 #include "Button.h"
 
 
-
 FilmBrowser* FilmBrowser::m_instance = nullptr;
 void FilmBrowser::update()
 {
-
     for (auto film : allFilms)
     {
         film->update();
     }
 
+    graphics::MouseState ms;
+    graphics::getMouseState(ms);
 
+    float mx = graphics::windowToCanvasX(ms.cur_pos_x);
+    float my = graphics::windowToCanvasX(ms.cur_pos_y);
+
+
+    Film* cur_film = nullptr;
+    for (auto film : allFilms)
+    {
+        if (film->contains(mx, my))
+        {
+            film->setHighlight(true);
+            cur_film = film;
+        }
+        else
+        {
+            film->setHighlight(false);
+        }
+    }
+ 
 }
 
 void FilmBrowser::draw()
@@ -41,12 +59,6 @@ void FilmBrowser::draw()
     {
         allFilms[i]->draw(i);
     }
-
-   
-    
-
-
-    
 }
 
 
@@ -62,8 +74,11 @@ void FilmBrowser::init()
     allFilms.push_back(new Film("Star Wars:Episode IV- A New Hope", "1977", "George Lucas", "CarrieFisher, Harrison Ford, Mark Hamill", filmGenre, "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader."));
     allFilms.push_back(new Film("Star Wars:Episode V-The Empire Strikes Back", "1980", "Irvin Kershner", "Carrie Fisher, Harrison Ford, Mark Hamill", filmGenre, "After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued across the galaxy by Darth Vader andbounty hunter BobaFett."));
 
-
-
+    for (size_t i = 0; i < allFilms.size(); i++)
+    {
+        allFilms[i]->setX(100 + (i * 100));
+        allFilms[i]->setY(100);
+    }
 }
 
 FilmBrowser* FilmBrowser::getInstance()
@@ -82,7 +97,5 @@ FilmBrowser::~FilmBrowser()
         delete film;
     }
     allFilms.clear();
-
-
 
 }
