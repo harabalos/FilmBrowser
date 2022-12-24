@@ -4,6 +4,7 @@
 
 void Button::update()
 {
+
 }
 
 bool Button::contains(float x, float y)

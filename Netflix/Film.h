@@ -21,7 +21,7 @@ public:
 	~Film();
 
 	void update();
-	void draw();
+	void draw(int i);
 	void init(int choice);
 	string getProductionDate();
 	string getName();

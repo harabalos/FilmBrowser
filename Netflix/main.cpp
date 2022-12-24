@@ -5,24 +5,24 @@
 
 void update(float ms)
 {
-    FilmBrowser* fb = reinterpret_cast<FilmBrowser*> (graphics::getUserData());
+    FilmBrowser* fb = FilmBrowser::getInstance();
     fb->update();
 }
 
 
 void draw()
 {
-    FilmBrowser* fb = reinterpret_cast<FilmBrowser*> (graphics::getUserData());
+    FilmBrowser* fb = FilmBrowser::getInstance();
     fb->draw();
 }
 
-int main()
+int main(int argc,char ** argv)
 {
-    FilmBrowser fb;
+    FilmBrowser* fb = FilmBrowser::getInstance();
+    fb->init();
 
-    graphics::createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Netflix");
+    graphics::createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "FilmBrowser");
 
-    graphics::setUserData(&fb);
 
     graphics::setDrawFunction(draw);
     graphics::setUpdateFunction(update);
@@ -30,13 +30,8 @@ int main()
     graphics::setCanvasSize(CANVAS_WIDTH, CANVAS_HEIGHT);
     graphics::setCanvasScaleMode(graphics::CANVAS_SCALE_FIT);
 
-    
-
-
-
-
-    fb.init();
+   
     graphics::startMessageLoop();
-
+    FilmBrowser::releaseInstance();
     return 0;
 }

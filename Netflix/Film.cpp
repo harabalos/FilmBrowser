@@ -9,21 +9,30 @@ void Film::update()
 {
 }
 
-void Film::draw()
+void Film::draw(int i)
 {
 	graphics::Brush br;
-	init(0);
-	graphics::drawText(10, 250, 35, getName(), br);
-	init(1);
-	graphics::drawText(10, 320, 16, "Director:", br);
-	graphics::drawText(150, 320, 16, getDirector(), br);
-	graphics::drawText(10, 340, 16, "Stars:", br);
-	graphics::drawText(150, 340, 16, getProtagonist(), br);
-	graphics::drawText(10, 360, 16, "Year:", br);
-	graphics::drawText(150, 360, 16, getProductionDate(), br);
-	graphics::drawText(10, 400, 16, "Summary:", br);
-	graphics::drawText(10, 420, 16, getSummary(), br);
-	getFilmGenre().draw();
+	br.fill_color[0] = 1.0f;
+	br.fill_color[0] = 1.0f;
+	br.fill_color[0] = 1.0f;
+	br.fill_opacity = 1.0f;
+	br.texture = ASSET_PATH+std::string("pic" + to_string(i) + ".png");
+	graphics::drawRect(110 + (i*96), 100, 96, 128, br);
+	
+	
+	
+	//init(0);
+	//graphics::drawText(10, 250, 35, getName(), br);
+	//init(1);
+	//graphics::drawText(10, 320, 16, "Director:", br);
+	//graphics::drawText(150, 320, 16, getDirector(), br);
+	//graphics::drawText(10, 340, 16, "Stars:", br);
+	//graphics::drawText(150, 340, 16, getProtagonist(), br);
+	//graphics::drawText(10, 360, 16, "Year:", br);
+	//graphics::drawText(150, 360, 16, getProductionDate(), br);
+	//graphics::drawText(10, 400, 16, "Summary:", br);
+	//graphics::drawText(10, 420, 16, getSummary(), br);
+	//getFilmGenre().draw();
 	
 
 }
