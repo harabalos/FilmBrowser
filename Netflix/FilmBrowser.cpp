@@ -33,6 +33,19 @@ void FilmBrowser::update()
             film->setHighlight(false);
         }
     }
+
+    if (ms.button_left_pressed && cur_film)
+    {
+        m_active_film = cur_film;
+        m_active_film->setActive(true);
+        for (auto film : allFilms)
+        {
+            if (film != m_active_film)
+            {
+                film->setActive(false);
+            }
+        }
+    }
  
 }
 
@@ -76,7 +89,7 @@ void FilmBrowser::init()
 
     for (size_t i = 0; i < allFilms.size(); i++)
     {
-        allFilms[i]->setX(100 + (i * 100));
+        allFilms[i]->setX(86 + (i * 104));
         allFilms[i]->setY(100);
     }
 }

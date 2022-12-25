@@ -18,6 +18,7 @@ private:
 	string summary;
 
 	bool m_highlighted = false;
+	bool m_active = false;
 public:
 	Film(string name, string productionDate, string director, string protagonist, Button filmGenre,string summary);
 	~Film();
@@ -36,6 +37,7 @@ public:
 	void setY(float y) { m_pos[1] = y; };
 
 	void setHighlight(bool h) { m_highlighted = h; };
+	void setActive(bool a) { m_active = a; };
 
 	bool contains(float x, float y);
 

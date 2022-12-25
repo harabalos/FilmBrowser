@@ -19,7 +19,7 @@ void Film::draw(int i)
 	br.fill_color[0] = h;
 	br.fill_color[1] = h;
 	br.fill_color[2] = h;
-	br.outline_opacity = 0.0f;
+	br.outline_opacity = 1.0f * m_active;
 	graphics::drawRect(m_pos[0], m_pos[1], 102, 136, br);
 
 
@@ -28,6 +28,7 @@ void Film::draw(int i)
 	br.fill_color[2] = 1.0f;
 	br.fill_opacity = 1.0f;
 	br.texture = ASSET_PATH+std::string("pic" + to_string(i) + ".png");
+	br.outline_opacity = 0.0f;
 	graphics::drawRect(m_pos[0], m_pos[1], 96, 128, br);
 	
 	
