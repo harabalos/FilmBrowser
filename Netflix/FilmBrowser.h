@@ -7,7 +7,6 @@
 class FilmBrowser
 {
 public:
-	enum filmState { STATE_INIT, STATE_LOADING, STATE_IDLE };
 
 protected:
 	static FilmBrowser* m_instance;
