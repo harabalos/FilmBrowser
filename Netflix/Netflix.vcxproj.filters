@@ -27,7 +27,7 @@
     <ClCompile Include="Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ButtonGenre.cpp">
+    <ClCompile Include="GenreButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,7 +47,7 @@
     <ClInclude Include="Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ButtonGenre.h">
+    <ClInclude Include="GenreButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

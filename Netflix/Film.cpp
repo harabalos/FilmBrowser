@@ -18,7 +18,27 @@ void Film::update()
 	graphics::drawText(10, 360, 16, "Year:", br);
 	graphics::drawText(150, 360, 16, getProductionDate(), br);
 	graphics::drawText(10, 400, 16, "Summary:", br);
-	graphics::drawText(10, 420, 16, getSummary(), br);
+	if (getSummary().size() > 70) {
+		std::string phrase1{ "" };
+		float j = 420;
+		int p = 0;
+		for (char i : getSummary())
+		{
+			phrase1 += i;
+			if (phrase1.size() == 70) {
+				graphics::drawText(30, j, 16, phrase1, br);
+				phrase1.erase(0, phrase1.size() - 1);
+				j += 20;
+			}
+			else if (p == getSummary().size() - 1) {
+				graphics::drawText(30, j, 16, phrase1, br);
+			}
+			p++;
+		}
+	}
+	else {
+		graphics::drawText(10, 420, 16, getSummary(), br);
+	}
 	getFilmGenre().draw();
 }
 

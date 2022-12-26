@@ -23,3 +23,21 @@ public:
 	bool setHighlight(bool h) { highlighted = h; }
 	bool contains(float x, float y);
 };
+
+//#pragma once
+//#include "Widget.h"
+//#include <string>
+//#include <vector>
+//
+//class Button :public Widget
+//{
+//public:
+//	Button() {};
+//	~Button();
+//	virtual void widgetSize(float& x, float& y, std::string kind);
+//	virtual void widgetPos(float& x, float& y, float num1, float num2);
+//	virtual void draw();
+//	virtual void update();
+//};
+//
+

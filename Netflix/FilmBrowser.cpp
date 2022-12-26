@@ -15,7 +15,6 @@ void FilmBrowser::update()
     float mx = graphics::windowToCanvasX(ms.cur_pos_x);
     float my = graphics::windowToCanvasX(ms.cur_pos_y);
 
-
     Film* cur_film = nullptr;
     for (auto film : allFilms)
     {
