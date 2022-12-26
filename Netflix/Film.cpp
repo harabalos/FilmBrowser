@@ -41,6 +41,7 @@ void Film::update()
 		graphics::drawText(10, 420, 16, getSummary(), br);
 	}
 	GenreButton filmGenres = GenreButton(30, 285, 42, 16, 0.8f, 0.8f, 0.8f, getFilmGenre());
+
 	filmGenres.draw();
 }
 
@@ -65,6 +66,18 @@ void Film::draw(int i)
 	br.texture = ASSET_PATH+std::string("pic" + to_string(i) + ".png");
 	br.outline_opacity = 0.0f;
 	graphics::drawRect(m_pos[0], m_pos[1], 96, 128, br);
+
+	br.fill_color[0] = 1.0f;
+	br.fill_color[1] = 1.0f;
+	br.fill_color[2] = 1.0f;
+	br.fill_opacity = 1.0f;
+	br.texture = ASSET_PATH + std::string("pic" + to_string(i) + ".png");
+	br.outline_opacity = 0.0f;
+	br.fill_opacity = 0.2f;
+	graphics::setOrientation(180.0f);
+	graphics::drawRect(m_pos[0], m_pos[1] + 120, 96, 128, br);
+	graphics::resetPose();
+
 }
 
 void Film::init(int choice)

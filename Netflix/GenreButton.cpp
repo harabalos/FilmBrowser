@@ -41,10 +41,7 @@ void GenreButton::draw()
 		br.fill_color[0] = r_color;
 		br.fill_color[1] = g_color;
 		br.fill_color[2] = b_color;
-		br.outline_opacity = 3.0f;
-		br.outline_color[0] = 1.0f;
-		br.outline_color[1] = 1.0f;
-		br.outline_color[2] = 1.0f;
+		br.fill_opacity = 1.0f;
 		if (i == 0) {
 			graphics::drawRect(x_pos, y_pos, size_x, size_y, br);
 		}
@@ -59,7 +56,6 @@ void GenreButton::draw()
 		br.fill_color[0] = 0.0f;
 		br.fill_color[1] = 0.0f;
 		br.fill_color[2] = 0.0f;
-		br.fill_opacity = 5.0f;
 		graphics::setFont(ASSET_PATH"OpenSans-Light.ttf");
 		graphics::drawText((x_pos)-(kind[i].length() / 2) * 5.5, y_pos + 3, 10, kind[i], br);
 		size_x1 = size_x;
