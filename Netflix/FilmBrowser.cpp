@@ -8,10 +8,6 @@
 FilmBrowser* FilmBrowser::m_instance = nullptr;
 void FilmBrowser::update()
 {
-    for (auto film : allFilms)
-    {
-        film->update();
-    }
 
     graphics::MouseState ms;
     graphics::getMouseState(ms);
@@ -44,6 +40,14 @@ void FilmBrowser::update()
             {
                 film->setActive(false);
             }
+        }
+    }
+
+    for (size_t i = 0; i < allFilms.size(); i++)
+    {
+        if (allFilms[i] == m_active_film) 
+        {
+            allFilms[i]->update();
         }
     }
  
@@ -92,6 +96,8 @@ void FilmBrowser::init()
         allFilms[i]->setX(86 + (i * 104));
         allFilms[i]->setY(100);
     }
+
+   
 }
 
 FilmBrowser* FilmBrowser::getInstance()

@@ -7,6 +7,19 @@
 
 void Film::update()
 {
+	graphics::Brush br;
+	init(0);
+	graphics::drawText(10, 250, 35, getName(), br);
+	init(1);
+	graphics::drawText(10, 320, 16, "Director:", br);
+	graphics::drawText(150, 320, 16, getDirector(), br);
+	graphics::drawText(10, 340, 16, "Stars:", br);
+	graphics::drawText(150, 340, 16, getProtagonist(), br);
+	graphics::drawText(10, 360, 16, "Year:", br);
+	graphics::drawText(150, 360, 16, getProductionDate(), br);
+	graphics::drawText(10, 400, 16, "Summary:", br);
+	graphics::drawText(10, 420, 16, getSummary(), br);
+	getFilmGenre().draw();
 }
 
 void Film::draw(int i)
@@ -31,20 +44,7 @@ void Film::draw(int i)
 	br.outline_opacity = 0.0f;
 	graphics::drawRect(m_pos[0], m_pos[1], 96, 128, br);
 	
-	
-	
-	//init(0);
-	//graphics::drawText(10, 250, 35, getName(), br);
-	//init(1);
-	//graphics::drawText(10, 320, 16, "Director:", br);
-	//graphics::drawText(150, 320, 16, getDirector(), br);
-	//graphics::drawText(10, 340, 16, "Stars:", br);
-	//graphics::drawText(150, 340, 16, getProtagonist(), br);
-	//graphics::drawText(10, 360, 16, "Year:", br);
-	//graphics::drawText(150, 360, 16, getProductionDate(), br);
-	//graphics::drawText(10, 400, 16, "Summary:", br);
-	//graphics::drawText(10, 420, 16, getSummary(), br);
-	//getFilmGenre().draw();
+
 	
 
 }
