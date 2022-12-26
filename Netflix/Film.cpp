@@ -2,6 +2,7 @@
 #include "graphics.h"
 #include "config.h"
 #include "Button.h"
+#include "GenreButton.h"
 
 
 
@@ -9,15 +10,15 @@ void Film::update()
 {
 	graphics::Brush br;
 	init(0);
-	graphics::drawText(10, 250, 35, getName(), br);
+	graphics::drawText(30, 250, 35, getName(), br);
 	init(1);
-	graphics::drawText(10, 320, 16, "Director:", br);
-	graphics::drawText(150, 320, 16, getDirector(), br);
-	graphics::drawText(10, 340, 16, "Stars:", br);
-	graphics::drawText(150, 340, 16, getProtagonist(), br);
-	graphics::drawText(10, 360, 16, "Year:", br);
-	graphics::drawText(150, 360, 16, getProductionDate(), br);
-	graphics::drawText(10, 400, 16, "Summary:", br);
+	graphics::drawText(30, 320, 16, "Director:", br);
+	graphics::drawText(140, 320, 16, getDirector(), br);
+	graphics::drawText(30, 340, 16, "Stars:", br);
+	graphics::drawText(140, 340, 16, getProtagonist(), br);
+	graphics::drawText(30, 360, 16, "Year:", br);
+	graphics::drawText(140, 360, 16, getProductionDate(), br);
+	graphics::drawText(30, 400, 16, "Summary:", br);
 	if (getSummary().size() > 70) {
 		std::string phrase1{ "" };
 		float j = 420;
@@ -25,7 +26,7 @@ void Film::update()
 		for (char i : getSummary())
 		{
 			phrase1 += i;
-			if (phrase1.size() == 70) {
+			if (phrase1.size()>70 && i==' ') {
 				graphics::drawText(30, j, 16, phrase1, br);
 				phrase1.erase(0, phrase1.size() - 1);
 				j += 20;
@@ -39,7 +40,8 @@ void Film::update()
 	else {
 		graphics::drawText(10, 420, 16, getSummary(), br);
 	}
-	getFilmGenre().draw();
+	GenreButton filmGenres = GenreButton(30, 285, 42, 16, 0.8f, 0.8f, 0.8f, getFilmGenre());
+	filmGenres.draw();
 }
 
 void Film::draw(int i)
@@ -63,10 +65,6 @@ void Film::draw(int i)
 	br.texture = ASSET_PATH+std::string("pic" + to_string(i) + ".png");
 	br.outline_opacity = 0.0f;
 	graphics::drawRect(m_pos[0], m_pos[1], 96, 128, br);
-	
-
-	
-
 }
 
 void Film::init(int choice)
@@ -86,7 +84,7 @@ void Film::init(int choice)
 
 }
 
-Film::Film(std::string name, std::string productionDate, std::string director, std::string protagonist, Button filmGenre, std::string summary)
+Film::Film(std::string name, std::string productionDate, std::string director, std::string protagonist, std::vector<std::string> filmGenre, std::string summary)
 	:name{ name }, productionDate{ productionDate }, director{ director }, protagonist{ protagonist }, filmGenre{ filmGenre }, summary{ summary } {}
 
 Film::~Film()
@@ -112,7 +110,7 @@ std::string Film::getProtagonist()
 	return protagonist;
 }
 
-Button Film::getFilmGenre()
+std::vector<std::string> Film::getFilmGenre()
 {
 	return filmGenre;
 }
