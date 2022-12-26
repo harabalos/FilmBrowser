@@ -41,7 +41,6 @@ void Film::update()
 		graphics::drawText(10, 420, 16, getSummary(), br);
 	}
 	GenreButton filmGenres = GenreButton(30, 285, 42, 16, 0.8f, 0.8f, 0.8f, getFilmGenre());
-
 	filmGenres.draw();
 }
 
@@ -77,7 +76,6 @@ void Film::draw(int i)
 	graphics::setOrientation(180.0f);
 	graphics::drawRect(m_pos[0], m_pos[1] + 120, 96, 128, br);
 	graphics::resetPose();
-
 }
 
 void Film::init(int choice)

@@ -41,7 +41,7 @@ void GenreButton::draw()
 		br.fill_color[0] = r_color;
 		br.fill_color[1] = g_color;
 		br.fill_color[2] = b_color;
-		br.fill_opacity = 1.0f;
+		br.outline_opacity = 1.0f;
 		if (i == 0) {
 			graphics::drawRect(x_pos, y_pos, size_x, size_y, br);
 		}

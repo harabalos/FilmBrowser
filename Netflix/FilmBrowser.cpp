@@ -42,14 +42,6 @@ void FilmBrowser::update()
         }
     }
 
-    for (size_t i = 0; i < allFilms.size(); i++)
-    {
-        if (allFilms[i] == m_active_film) 
-        {
-            allFilms[i]->update();
-        }
-    }
- 
 }
 
 void FilmBrowser::draw()
@@ -75,12 +67,20 @@ void FilmBrowser::draw()
     {
         allFilms[i]->draw(i);
     }
+
+    for (size_t i = 0; i < allFilms.size(); i++)
+    {
+        if (allFilms[i] == m_active_film)
+        {
+            allFilms[i]->update();
+        }
+    }
 }
 
 
 void FilmBrowser::init()
 {
-    allFilms.push_back(new Film("Fight Club", "1999", "David Fincher", "Brad Pitt,Edward Norton", { "Drama","Adventure" }, "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more."));
+    allFilms.push_back(new Film("Fight Club", "1999", "David Fincher", "Brad Pitt,Edward Norton", { "Drama"}, "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more."));
     allFilms.push_back(new Film("Schindler's List", "1993", "Steven Spielberg", "Liam Neeson, Ralph Fiennes, Ben Kingsley", { "Drama","History" }, "In German - occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis."));
     allFilms.push_back(new Film("The Godfather", "1972", "Francis Ford Coppola", "Al Pacino,James Caan,Marlon Brando", { "Drama","History" }, "The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son."));
     allFilms.push_back(new Film("The Terminator", "1984", "James Cameron", "Arnold Schwarzeneger,Linda Hamilton,Michael Biehn", { "SciFi","Action" }, "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation."));
