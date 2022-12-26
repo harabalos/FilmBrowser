@@ -27,6 +27,7 @@ void GenreButton::widgetPos(float& x, float& y, float num1, float num2)
 
 void GenreButton::draw()
 {
+	float h = r_color * m_highlighted;
 	float size_x1 = 0;
 	for (size_t i = 0; i < kind.size(); i++)
 	{
@@ -38,9 +39,9 @@ void GenreButton::draw()
 			widgetPos(x_pos, y_pos, size_x / 2, 0);
 		}
 		graphics::Brush br;
-		br.fill_color[0] = r_color;
-		br.fill_color[1] = g_color;
-		br.fill_color[2] = b_color;
+		br.fill_color[0] = h;
+		br.fill_color[1] = h;
+		br.fill_color[2] = h;
 		br.outline_opacity = 1.0f;
 		if (i == 0) {
 			graphics::drawRect(x_pos, y_pos, size_x, size_y, br);

@@ -40,8 +40,7 @@ void Film::update()
 	else {
 		graphics::drawText(10, 420, 16, getSummary(), br);
 	}
-	GenreButton filmGenres = GenreButton(30, 285, 42, 16, 0.8f, 0.8f, 0.8f, getFilmGenre());
-	filmGenres.draw();
+	getFilmGenre().draw();
 }
 
 void Film::draw(int i)
@@ -76,6 +75,7 @@ void Film::draw(int i)
 	graphics::setOrientation(180.0f);
 	graphics::drawRect(m_pos[0], m_pos[1] + 120, 96, 128, br);
 	graphics::resetPose();
+
 }
 
 void Film::init(int choice)
@@ -95,7 +95,7 @@ void Film::init(int choice)
 
 }
 
-Film::Film(std::string name, std::string productionDate, std::string director, std::string protagonist, std::vector<std::string> filmGenre, std::string summary)
+Film::Film(std::string name, std::string productionDate, std::string director, std::string protagonist, GenreButton filmGenre, std::string summary)
 	:name{ name }, productionDate{ productionDate }, director{ director }, protagonist{ protagonist }, filmGenre{ filmGenre }, summary{ summary } {}
 
 Film::~Film()
@@ -121,7 +121,7 @@ std::string Film::getProtagonist()
 	return protagonist;
 }
 
-std::vector<std::string> Film::getFilmGenre()
+GenreButton Film::getFilmGenre()
 {
 	return filmGenre;
 }

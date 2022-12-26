@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "Button.h"
+#include "GenreButton.h"
 using namespace std;
 
 
@@ -14,13 +14,13 @@ private:
 	string productionDate;
 	string director;
 	string protagonist;
-	std::vector<std::string>  filmGenre;
+	GenreButton  filmGenre;
 	string summary;
 
 	bool m_highlighted = false;
 	bool m_active = false;
 public:
-	Film(string name, string productionDate, string director, string protagonist, std::vector<std::string>  filmGenre,string summary);
+	Film(string name, string productionDate, string director, string protagonist, GenreButton  filmGenre,string summary);
 	~Film();
 
 	void update();
@@ -30,7 +30,7 @@ public:
 	string getName();
 	string getDirector();
 	string getProtagonist();
-	std::vector<std::string> getFilmGenre();
+	GenreButton getFilmGenre();
 	string getSummary();
 
 	void setX(float x) { m_pos[0] = x; };

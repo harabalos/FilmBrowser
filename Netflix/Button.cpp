@@ -4,7 +4,7 @@
 
 bool Button::contains(float x, float y)
 {
-	return distance(x, y, x_pos, y_pos)<36*12;
+	return distance(x, y, x_pos, y_pos)<20;
 }
 
 
@@ -16,6 +16,7 @@ Button::Button(float x_pos, float y_pos, float size_x, float size_y, float r_col
 
 void Button::update()
 {
+
 
 }
 
