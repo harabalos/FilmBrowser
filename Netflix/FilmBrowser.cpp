@@ -22,11 +22,18 @@ void FilmBrowser::update()
         {
             film->setHighlight(true);
             cur_film = film;
-
         }
         else
         {
             film->setHighlight(false);
+        }
+        if (film->getFilmGenre().contains(mx, my))
+        {
+            film->getFilmGenre().setHighlight(true);
+        }
+        else
+        {
+            film->getFilmGenre().setHighlight(false);
         }
 
     }
@@ -43,7 +50,6 @@ void FilmBrowser::update()
             }
         }
     }
-
 
 }
 
@@ -69,6 +75,12 @@ void FilmBrowser::draw()
     for (size_t i = 0; i < allFilms.size(); i++)
     {
         allFilms[i]->draw(i);
+    }
+    if (state == STATE_INIT)
+    {
+        m_active_film = allFilms[0];
+        m_active_film->setActive(true);
+        state = STATE_IDLE;
     }
 
     for (size_t i = 0; i < allFilms.size(); i++)

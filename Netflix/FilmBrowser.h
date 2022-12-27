@@ -12,6 +12,7 @@ protected:
 	static FilmBrowser* m_instance;
 	std::vector<Film*> allFilms;
 	Film* m_active_film = nullptr;
+	film_state state = STATE_INIT;
 	GenreButton filmGenre0 = GenreButton(30, 285, 42, 16, 0.8f, 0.8f, 0.8f, {"Drama"});
 	GenreButton filmGenre1 = GenreButton(30, 285, 42, 16, 0.8f, 0.8f, 0.8f, { "Drama","History" });
 	GenreButton filmGenre2 = GenreButton(30, 285, 42, 16, 0.8f, 0.8f, 0.8f, { "SciFi","Action" });

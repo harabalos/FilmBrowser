@@ -10,12 +10,6 @@ void Film::update()
 {
 
 
-	graphics::MouseState ms;
-	graphics::getMouseState(ms);
-
-	float mx = graphics::windowToCanvasX(ms.cur_pos_x);
-	float my = graphics::windowToCanvasX(ms.cur_pos_y);
-
 	graphics::Brush br;
 	init(0);
 	graphics::drawText(30, 250, 35, getName(), br);
@@ -49,28 +43,6 @@ void Film::update()
 		graphics::drawText(10, 420, 16, getSummary(), br);
 	}
 	getFilmGenre().draw();
-
-	//if (getFilmGenre().contains(mx, my))
-	//{
-	//	getFilmGenre().setHighlight(true);
-	//}
-	//else
-	//{
-	//	getFilmGenre().setHighlight(false);
-	//}
-
-
-	//for (size_t i = 0; i < getFilmGenre().getKind().size(); i++)
-	//{
-	//	if (getFilmGenre()->contains(mx, my))
-	//	{
-	//		allFilms[i]->getFilmGenre().setHighlight(false);
-	//	}
-	//	else
-	//	{
-	//		allFilms[i]->getFilmGenre().setHighlight(true);
-	//	}
-	//}
 
 }
 

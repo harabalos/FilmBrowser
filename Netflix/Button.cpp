@@ -13,7 +13,6 @@ Button::Button(float x_pos, float y_pos, float size_x, float size_y, float r_col
 
 
 
-
 void Button::update()
 {
 
