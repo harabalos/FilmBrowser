@@ -8,6 +8,14 @@
 
 void Film::update()
 {
+
+
+	graphics::MouseState ms;
+	graphics::getMouseState(ms);
+
+	float mx = graphics::windowToCanvasX(ms.cur_pos_x);
+	float my = graphics::windowToCanvasX(ms.cur_pos_y);
+
 	graphics::Brush br;
 	init(0);
 	graphics::drawText(30, 250, 35, getName(), br);
@@ -41,6 +49,29 @@ void Film::update()
 		graphics::drawText(10, 420, 16, getSummary(), br);
 	}
 	getFilmGenre().draw();
+
+	//if (getFilmGenre().contains(mx, my))
+	//{
+	//	getFilmGenre().setHighlight(true);
+	//}
+	//else
+	//{
+	//	getFilmGenre().setHighlight(false);
+	//}
+
+
+	//for (size_t i = 0; i < getFilmGenre().getKind().size(); i++)
+	//{
+	//	if (getFilmGenre()->contains(mx, my))
+	//	{
+	//		allFilms[i]->getFilmGenre().setHighlight(false);
+	//	}
+	//	else
+	//	{
+	//		allFilms[i]->getFilmGenre().setHighlight(true);
+	//	}
+	//}
+
 }
 
 void Film::draw(int i)
@@ -48,12 +79,13 @@ void Film::draw(int i)
 	graphics::Brush br;
 
 	float h = 1.0f * m_highlighted;
+	float glow = 0.7f + 0.3f * sinf(graphics::getGlobalTime());
 
 
 	br.fill_color[0] = h;
 	br.fill_color[1] = h;
 	br.fill_color[2] = h;
-	br.outline_opacity = 1.0f * m_active;
+	br.outline_opacity = glow * m_active;
 	graphics::drawRect(m_pos[0], m_pos[1], 102, 136, br);
 
 
