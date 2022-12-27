@@ -7,7 +7,7 @@
 class FilmBrowser
 {
 public:
-
+	enum film_state {STATE_INIT,STATE_IDLE};
 protected:
 	static FilmBrowser* m_instance;
 	std::vector<Film*> allFilms;

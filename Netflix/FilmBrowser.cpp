@@ -45,18 +45,6 @@ void FilmBrowser::update()
     }
 
 
-    for (size_t i = 0; i < allFilms.size(); i++)
-    {
-        if (allFilms[i]->getFilmGenre().contains(mx, my))
-        {
-            allFilms[i]->getFilmGenre().setHighlight(false);
-        }
-        else
-        {
-            allFilms[i]->getFilmGenre().setHighlight(true);
-        }
-    }
-
 }
 
 void FilmBrowser::draw()
