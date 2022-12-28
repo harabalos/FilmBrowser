@@ -3,12 +3,20 @@
 
 class GenreButton : public Button {
 protected:
-	std::vector<std::string> kind;
+	std::string kind;
+	bool m_highlighted = false;
+	bool m_active = false;
 public:
-	GenreButton(float x_pos, float y_pos, float size_x, float size_y, float r_color, float g_color, float b_color, std::vector<std::string> kind);
+	GenreButton(std::string kind);
 	~GenreButton();
 	void widgetSize(float& x, float& y, std::string kind) override;
 	void widgetPos(float& x, float& y, float num1, float num2) override;
-	void draw() override;
-	std::vector<std::string> getKind();
+	void draw(int i) override;
+	std::string getKind();
+	bool contains(float x, float y);
+	void setHighlight(bool h) { m_highlighted = h; };
+	void setActive(bool a) { m_active = a; };
+	void setX(float x) { x_pos = x; };
+	void setY(float y) { y_pos = y; };
+
 };

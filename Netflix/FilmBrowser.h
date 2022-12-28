@@ -13,12 +13,13 @@ protected:
 	std::vector<Film*> allFilms;
 	Film* m_active_film = nullptr;
 	film_state state = STATE_INIT;
-	GenreButton filmGenre0 = GenreButton(30, 285, 42, 16, 0.8f, 0.8f, 0.8f, {"Drama"});
-	GenreButton filmGenre1 = GenreButton(30, 285, 42, 16, 0.8f, 0.8f, 0.8f, { "Drama","History" });
-	GenreButton filmGenre2 = GenreButton(30, 285, 42, 16, 0.8f, 0.8f, 0.8f, { "SciFi","Action" });
-	GenreButton filmGenre3 = GenreButton(30, 285, 42, 16, 0.8f, 0.8f, 0.8f, { "Adventure","Action" });
-	GenreButton filmGenre4 = GenreButton(30, 285, 42, 16, 0.8f, 0.8f, 0.8f, { "Drama","Crime" });
-	GenreButton filmGenre5 = GenreButton(30, 285, 42, 16, 0.8f, 0.8f, 0.8f, { "Adventure","Action","Fantasy" });
+	GenreButton* filmGenre0 = new GenreButton("Drama");
+	GenreButton* filmGenre1 = new GenreButton("History");
+	GenreButton* filmGenre2 = new GenreButton( "SciFi");
+	GenreButton* filmGenre3 = new GenreButton("Action" );
+	GenreButton* filmGenre4 = new GenreButton( "Crime" );
+	GenreButton* filmGenre5 = new GenreButton("Fantasy" );
+	GenreButton* filmGenre6 = new GenreButton( "Adventure");
 	FilmBrowser() {};
 		 
 

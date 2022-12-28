@@ -42,7 +42,11 @@ void Film::update()
 	else {
 		graphics::drawText(10, 420, 16, getSummary(), br);
 	}
-	getFilmGenre().draw();
+	
+	for (size_t i = 0; i < getFilmGenre().size(); i++)
+	{
+		getFilmGenre()[i]->draw(i);
+	}
 
 }
 
@@ -97,9 +101,15 @@ void Film::init(int choice)
 		graphics::setFont(ASSET_PATH"OpenSans-Light.ttf");
 	}
 
+	for (size_t i = 0; i < getFilmGenre().size(); i++)
+	{
+		getFilmGenre()[i]->setX(48 + (i * 60));
+		getFilmGenre()[i]->setY(285 );
+
+	}
 }
 
-Film::Film(std::string name, std::string productionDate, std::string director, std::string protagonist, GenreButton filmGenre, std::string summary)
+Film::Film(std::string name, std::string productionDate, std::string director, std::string protagonist, std::vector<GenreButton*> filmGenre, std::string summary)
 	:name{ name }, productionDate{ productionDate }, director{ director }, protagonist{ protagonist }, filmGenre{ filmGenre }, summary{ summary } {}
 
 Film::~Film()
@@ -125,7 +135,7 @@ std::string Film::getProtagonist()
 	return protagonist;
 }
 
-GenreButton Film::getFilmGenre()
+std::vector<GenreButton*>  Film::getFilmGenre()
 {
 	return filmGenre;
 }

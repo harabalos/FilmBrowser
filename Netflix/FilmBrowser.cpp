@@ -26,15 +26,19 @@ void FilmBrowser::update()
         else
         {
             film->setHighlight(false);
-        }
-        if (film->getFilmGenre().contains(mx, my))
+        }     
+        for (auto button : film->getFilmGenre())
         {
-            film->getFilmGenre().setHighlight(true);
+            if (button->contains(mx, my))
+            {
+                button->setHighlight(true);
+            }
+            else
+            {
+                button->setHighlight(false);
+            }
         }
-        else
-        {
-            film->getFilmGenre().setHighlight(false);
-        }
+        
 
     }
 
@@ -95,15 +99,15 @@ void FilmBrowser::draw()
 
 void FilmBrowser::init()
 {
-    allFilms.push_back(new Film("Fight Club", "1999", "David Fincher", "Brad Pitt,Edward Norton", filmGenre0, "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more."));
-    allFilms.push_back(new Film("Schindler's List", "1993", "Steven Spielberg", "Liam Neeson, Ralph Fiennes, Ben Kingsley", filmGenre1, "In German - occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis."));
-    allFilms.push_back(new Film("The Godfather", "1972", "Francis Ford Coppola", "Al Pacino,James Caan,Marlon Brando", filmGenre1, "The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son."));
-    allFilms.push_back(new Film("The Terminator", "1984", "James Cameron", "Arnold Schwarzeneger,Linda Hamilton,Michael Biehn", filmGenre2, "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation."));
-    allFilms.push_back(new Film("Indian Jones and the Raiders of the Lost Ark", "1981", "Steven Spielberg", "Harrison Ford,Karen Allen,Paul Freeman", filmGenre3, "KrioraArchaeology professor Indiana Jones ventures to seize a biblical artef act known as the Ark of the Covenant.While doing so, he puts up a fight against Renee and a troop of Nazis."));
-    allFilms.push_back(new Film("Indiana Jones and the Temple of Doom", "1984", "Steven Spielberg", "HarrisonFord, Kate Capshaw, Ke Huy Quan", filmGenre3, "A skirmish in Shanghai puts archaeologist Indiana Jones, his partner Short Round and singer Willie Scott crossing paths with an Indian village desperate to reclaim a rock stolen by a secret cult beneath the catacombs of an ancient palace."));
-    allFilms.push_back(new Film("Pulp Fiction", "1994", "Quentin Tarantino", "John Travolta, SamuelL. Jackson, Uma Thurman", filmGenre4, "The lives of two rob hitmen, aboxer, a gangster and his wife, and apair of diner bandits inter twine in four tales of violence andredemption."));
-    allFilms.push_back(new Film("Star Wars:Episode IV- A New Hope", "1977", "George Lucas", "CarrieFisher, Harrison Ford, Mark Hamill", filmGenre5, "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader."));
-    allFilms.push_back(new Film("Star Wars:Episode V-The Empire Strikes Back", "1980", "Irvin Kershner", "Carrie Fisher, Harrison Ford, Mark Hamill", filmGenre5, "After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued across the galaxy by Darth Vader andbounty hunter BobaFett."));
+    allFilms.push_back(new Film("Fight Club", "1999", "David Fincher", "Brad Pitt,Edward Norton", { filmGenre0}, "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more."));
+    allFilms.push_back(new Film("Schindler's List", "1993", "Steven Spielberg", "Liam Neeson, Ralph Fiennes, Ben Kingsley", { filmGenre0,filmGenre1 }, "In German - occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis."));
+    allFilms.push_back(new Film("The Godfather", "1972", "Francis Ford Coppola", "Al Pacino,James Caan,Marlon Brando", { filmGenre0,filmGenre1 }, "The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son."));
+    allFilms.push_back(new Film("The Terminator", "1984", "James Cameron", "Arnold Schwarzeneger,Linda Hamilton,Michael Biehn", { filmGenre2,filmGenre3 }, "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation."));
+    allFilms.push_back(new Film("Indian Jones and the Raiders of the Lost Ark", "1981", "Steven Spielberg", "Harrison Ford,Karen Allen,Paul Freeman", { filmGenre3,filmGenre6 }, "KrioraArchaeology professor Indiana Jones ventures to seize a biblical artef act known as the Ark of the Covenant.While doing so, he puts up a fight against Renee and a troop of Nazis."));
+    allFilms.push_back(new Film("Indiana Jones and the Temple of Doom", "1984", "Steven Spielberg", "HarrisonFord, Kate Capshaw, Ke Huy Quan", { filmGenre3,filmGenre6 }, "A skirmish in Shanghai puts archaeologist Indiana Jones, his partner Short Round and singer Willie Scott crossing paths with an Indian village desperate to reclaim a rock stolen by a secret cult beneath the catacombs of an ancient palace."));
+    allFilms.push_back(new Film("Pulp Fiction", "1994", "Quentin Tarantino", "John Travolta, SamuelL. Jackson, Uma Thurman", { filmGenre0,filmGenre4 }, "The lives of two rob hitmen, aboxer, a gangster and his wife, and apair of diner bandits inter twine in four tales of violence andredemption."));
+    allFilms.push_back(new Film("Star Wars:Episode IV- A New Hope", "1977", "George Lucas", "CarrieFisher, Harrison Ford, Mark Hamill", { filmGenre3, filmGenre6,filmGenre5 }, "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader."));
+    allFilms.push_back(new Film("Star Wars:Episode V-The Empire Strikes Back", "1980", "Irvin Kershner", "Carrie Fisher, Harrison Ford, Mark Hamill", { filmGenre3, filmGenre6,filmGenre5 }, "After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued across the galaxy by Darth Vader andbounty hunter BobaFett."));
 
     for (size_t i = 0; i < allFilms.size(); i++)
     {
@@ -128,7 +132,13 @@ FilmBrowser::~FilmBrowser()
     for (auto film : allFilms)
     {
         delete film;
+        for (auto button : film->getFilmGenre())
+        {
+            delete button;
+        }
     }
     allFilms.clear();
+
+   
 
 }
