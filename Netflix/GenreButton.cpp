@@ -28,11 +28,12 @@ void GenreButton::widgetPos(float& x, float& y, float num1, float num2)
 void GenreButton::draw(int i)
 {
 	float h = r_color + m_highlighted;
+	float glow = 0.5f + 0.5f * sinf(graphics::getGlobalTime());
 		graphics::Brush br;
 		br.fill_color[0] = h;
 		br.fill_color[1] = h;
 		br.fill_color[2] = h;
-		br.outline_opacity = 1.0f;
+		br.outline_opacity = glow * m_active;
 		float size_x1 = 0;
 
 		widgetSize(size_x, size_y, kind);

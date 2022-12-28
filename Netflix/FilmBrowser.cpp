@@ -16,6 +16,7 @@ void FilmBrowser::update()
     float my = graphics::windowToCanvasX(ms.cur_pos_y);
 
     Film* cur_film = nullptr;
+    GenreButton* cur_but = nullptr;
     for (auto film : allFilms)
     {
         if (film->contains(mx, my))
@@ -32,6 +33,7 @@ void FilmBrowser::update()
             if (button->contains(mx, my))
             {
                 button->setHighlight(true);
+                cur_but = button;
             }
             else
             {
@@ -51,10 +53,26 @@ void FilmBrowser::update()
             if (film != m_active_film)
             {
                 film->setActive(false);
+
+            }
+        }
+
+    }
+    if (ms.button_left_down && cur_but)
+    {
+        for (auto film : allFilms)
+        {
+            m_active_button = cur_but;
+            m_active_button->setActive(true);
+            for (auto button : film->getFilmGenre())
+            {
+                if (button != m_active_button)
+                {
+                    button->setActive(true);
+                }
             }
         }
     }
-
 }
 
 void FilmBrowser::draw()
