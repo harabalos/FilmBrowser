@@ -3,7 +3,7 @@
 #include "config.h"
 #include "Button.h"
 #include "GenreButton.h"
-
+#include "FilmBrowser.h"
 
 
 void Film::update()
@@ -88,7 +88,7 @@ void Film::update()
 
 }
 
-void Film::draw(int i)
+void Film::draw()
 {
 	graphics::Brush br;
 
@@ -107,7 +107,7 @@ void Film::draw(int i)
 	br.fill_color[1] = 1.0f;
 	br.fill_color[2] = 1.0f;
 	br.fill_opacity = 1.0f;
-	br.texture = ASSET_PATH+std::string("pic" + to_string(i) + ".png");
+	br.texture = ASSET_PATH+std::string("pic" + to_string(geti()) + ".png");
 	br.outline_opacity = 0.0f;
 	graphics::drawRect(m_pos[0], m_pos[1], 96, 128, br);
 
@@ -115,7 +115,7 @@ void Film::draw(int i)
 	br.fill_color[1] = 1.0f;
 	br.fill_color[2] = 1.0f;
 	br.fill_opacity = 1.0f;
-	br.texture = ASSET_PATH + std::string("pic" + to_string(i) + ".png");
+	br.texture = ASSET_PATH + std::string("pic" + to_string(geti()) + ".png");
 	br.outline_opacity = 0.0f;
 	br.fill_opacity = 0.2f;
 	graphics::setOrientation(180.0f);
@@ -147,8 +147,8 @@ void Film::init(int choice)
 	}
 }
 
-Film::Film(std::string name, std::string productionDate, std::string director, std::string protagonist, std::vector<GenreButton*> filmGenre, std::string summary)
-	:name{ name }, productionDate{ productionDate }, director{ director }, protagonist{ protagonist }, filmGenre{ filmGenre }, summary{ summary } {}
+Film::Film(std::string name, std::string productionDate, std::string director, std::string protagonist, std::vector<GenreButton*> filmGenre, std::string summary,int i)
+	:name{ name }, productionDate{ productionDate }, director{ director }, protagonist{ protagonist }, filmGenre{ filmGenre }, summary{ summary }, i{i} {}
 
 Film::~Film()
 {
@@ -181,6 +181,11 @@ std::vector<GenreButton*>  Film::getFilmGenre()
 std::string Film::getSummary()
 {
 	return summary;
+}
+
+int Film::geti()
+{
+	return i;
 }
 
 bool Film::contains(float x, float y)

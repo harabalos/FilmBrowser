@@ -2,6 +2,10 @@
 #include "graphics.h"
 #include "config.h"
 #include <string>
+#include <vector>
+#include "FilmBrowser.h"
+#include "Film.h"
+
 
 GenreButton::GenreButton(std::string kind)
 	:Button{ x_pos =48 , y_pos = 285,size_x = 42, size_y = 16, r_color = 0.65f, g_color = 0.65f, b_color = 0.65f }, kind{ kind } {}
@@ -31,7 +35,7 @@ void GenreButton::draw(int i)
 	float glow = 0.2f + 0.8f * sinf(graphics::getGlobalTime());
 		graphics::Brush br;
 		br.fill_color[0] = h;
-		br.fill_color[1] = h*m_active;
+		br.fill_color[1] = h;
 		br.fill_color[2] = h;
 		br.outline_opacity = glow * m_active;
 		float size_x1 = 0;

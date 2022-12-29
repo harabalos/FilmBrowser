@@ -17,16 +17,17 @@ private:
 	string protagonist;
 	std::vector<GenreButton*> filmGenre;
 	string summary;
+	int i;
 
 	bool m_highlighted = false;
 	bool m_active = false;
-	GenreButton* m_active_button = nullptr;
-public:
-	Film(string name, string productionDate, string director, string protagonist, std::vector<GenreButton*> filmGenre ,string summary);
-	~Film();
 
+public:
+	Film(string name, string productionDate, string director, string protagonist, std::vector<GenreButton*> filmGenre ,string summary,int i);
+	~Film();
+	GenreButton* m_active_button = nullptr;
 	void update();
-	void draw(int i);
+	void draw();
 	void init(int choice);
 	string getProductionDate();
 	string getName();
@@ -34,6 +35,7 @@ public:
 	string getProtagonist();
 	std::vector<GenreButton*>  getFilmGenre();
 	string getSummary();
+	int geti();
 
 	void setX(float x) { m_pos[0] = x; };
 	void setY(float y) { m_pos[1] = y; };
@@ -42,5 +44,7 @@ public:
 	void setActive(bool a) { m_active = a; };
 
 	bool contains(float x, float y);
+
+
 
 };
