@@ -20,6 +20,7 @@ private:
 
 	bool m_highlighted = false;
 	bool m_active = false;
+	GenreButton* m_active_button = nullptr;
 public:
 	Film(string name, string productionDate, string director, string protagonist, std::vector<GenreButton*> filmGenre ,string summary);
 	~Film();

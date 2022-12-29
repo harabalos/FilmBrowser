@@ -28,10 +28,10 @@ void GenreButton::widgetPos(float& x, float& y, float num1, float num2)
 void GenreButton::draw(int i)
 {
 	float h = r_color + m_highlighted;
-	float glow = 0.5f + 0.5f * sinf(graphics::getGlobalTime());
+	float glow = 0.2f + 0.8f * sinf(graphics::getGlobalTime());
 		graphics::Brush br;
 		br.fill_color[0] = h;
-		br.fill_color[1] = h;
+		br.fill_color[1] = h*m_active;
 		br.fill_color[2] = h;
 		br.outline_opacity = glow * m_active;
 		float size_x1 = 0;
@@ -55,14 +55,14 @@ void GenreButton::draw(int i)
 	
 }
 
+void GenreButton::update()
+{
+
+}
+
 std::string GenreButton::getKind()
 {
 	return kind;
 }
 
-
-bool GenreButton::contains(float x, float y)
-{
-	return distance(x, y, x_pos, y_pos) < 20;
-}
 

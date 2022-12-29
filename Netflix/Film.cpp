@@ -9,6 +9,14 @@
 void Film::update()
 {
 
+	graphics::MouseState ms;
+	graphics::getMouseState(ms);
+
+	float mx = graphics::windowToCanvasX(ms.cur_pos_x);
+	float my = graphics::windowToCanvasX(ms.cur_pos_y);
+
+	GenreButton* cur_but = nullptr;
+
 
 	graphics::Brush br;
 	init(0);
@@ -42,10 +50,40 @@ void Film::update()
 	else {
 		graphics::drawText(10, 420, 16, getSummary(), br);
 	}
+
 	
 	for (size_t i = 0; i < getFilmGenre().size(); i++)
 	{
 		getFilmGenre()[i]->draw(i);
+	}
+
+
+	for (auto button : getFilmGenre())
+	{
+    if (button->contains(mx, my))
+    {
+        button->setHighlight(true);
+        cur_but = button;
+    }
+    else
+    {
+        button->setHighlight(false);
+    }
+	}
+
+
+	if (ms.button_left_pressed && cur_but )
+	{
+		m_active_button = cur_but;
+		m_active_button->setActive(true);
+
+		for (auto button : getFilmGenre())
+		{
+			if (button != m_active_button)
+			{
+				button->setActive(false);
+			}
+		}
 	}
 
 }
