@@ -17,6 +17,7 @@ public:
 	GenreButton* Adventure = new GenreButton("Adventure");
 protected:
 	static FilmBrowser* m_instance;
+	std::vector<Film*> films;
 	std::vector<Film*> allFilms;
 	std::vector<Film*> dramaFilms;
 	std::vector<Film*> historyFilms;

@@ -16,7 +16,7 @@ void FilmBrowser::update()
     float my = graphics::windowToCanvasX(ms.cur_pos_y);
 
     Film* cur_film = nullptr;
-    for (auto film : allFilms)
+    for (auto film : films)
     {
         if (film->contains(mx, my))
         {
@@ -34,18 +34,17 @@ void FilmBrowser::update()
     {
         m_active_film = cur_film;
         m_active_film->setActive(true);
-        for (auto film : allFilms)
+        for (auto film : films)
         {
             if (film != m_active_film)
             {
                 film->setActive(false);
-
+                film->m_active_button = nullptr;
             }
         }
-
     }
-    
-    for (auto film : allFilms)
+
+    for (auto film : films)
     {
         if (film->m_active_button == Drama)
         {
@@ -100,24 +99,25 @@ void FilmBrowser::draw()
     //draw film
     if (state == START)
     {
-        for (size_t i = 0; i < allFilms.size(); i++)
+        films = allFilms;
+        for (size_t i = 0; i < films.size(); i++)
         {
-            allFilms[i]->draw();
+            films[i]->draw();
         }
 
         if (startingFilm)
         {
 
-            m_active_film = allFilms[0];
+            m_active_film = films[0];
             m_active_film->setActive(true);
             startingFilm = false;
         }
 
-        for (size_t i = 0; i < allFilms.size(); i++)
+        for (size_t i = 0; i < films.size(); i++)
         {
-            if (allFilms[i] == m_active_film)
+            if (films[i] == m_active_film)
             {
-                allFilms[i]->update();
+                films[i]->update();
             }
         }
     }
@@ -126,97 +126,102 @@ void FilmBrowser::draw()
     {
     case DRAMA:
 
-
-        for (size_t i = 0; i < dramaFilms.size(); i++)
+        films = dramaFilms;
+        for (size_t i = 0; i < films.size(); i++)
         {
-            dramaFilms[i]->draw();
+            films[i]->draw();
         }
-        for (size_t i = 0; i < dramaFilms.size(); i++)
+        for (size_t i = 0; i < films.size(); i++)
         {
-            if (dramaFilms[i] == m_active_film)
+            if (films[i] == m_active_film)
             {
-                dramaFilms[i]->update();
+                films[i]->update();
             }
         }
 
         break;
     case HISTORY:
-
-        for (size_t i = 0; i < historyFilms.size(); i++)
+        films = historyFilms;
+        for (size_t i = 0; i < films.size(); i++)
         {
-            historyFilms[i]->draw();
+            films[i]->draw();
         }
-        for (size_t i = 0; i < historyFilms.size(); i++)
+        for (size_t i = 0; i < films.size(); i++)
         {
-            if (historyFilms[i] == m_active_film)
+            if (films[i] == m_active_film)
             {
-                historyFilms[i]->update();
+                films[i]->update();
             }
         }
         break;
     case SCIFI:
-        for (size_t i = 0; i < scifiFilms.size(); i++)
+        films = scifiFilms;
+        for (size_t i = 0; i < films.size(); i++)
         {
-            scifiFilms[i]->draw();
+            films[i]->draw();
         }
-        for (size_t i = 0; i < scifiFilms.size(); i++)
+        for (size_t i = 0; i < films.size(); i++)
         {
-            if (scifiFilms[i] == m_active_film)
+            if (films[i] == m_active_film)
             {
-                scifiFilms[i]->update();
+                films[i]->update();
             }
         }
 
         break;
     case ACTION:
-        for (size_t i = 0; i < actionFilms.size(); i++)
+        films = actionFilms;
+        for (size_t i = 0; i < films.size(); i++)
         {
-            actionFilms[i]->draw();
+            films[i]->draw();
         }
-        for (size_t i = 0; i < actionFilms.size(); i++)
+        for (size_t i = 0; i < films.size(); i++)
         {
-            if (actionFilms[i] == m_active_film)
+            if (films[i] == m_active_film)
             {
-                actionFilms[i]->update();
+                films[i]->update();
             }
         }
         break;
     case CRIME:
-        for (size_t i = 0; i < crimeFilms.size(); i++)
+        films = crimeFilms;
+        for (size_t i = 0; i < films.size(); i++)
         {
-            crimeFilms[i]->draw();
+            films[i]->draw();
         }
-        for (size_t i = 0; i < crimeFilms.size(); i++)
+        for (size_t i = 0; i < films.size(); i++)
         {
-            if (crimeFilms[i] == m_active_film)
+            if (films[i] == m_active_film)
             {
-                crimeFilms[i]->update();
+                films[i]->update();
             }
         }
         break;
     case FANTASY:
-        for (size_t i = 0; i < fantasyFilms.size(); i++)
+        films = fantasyFilms;
+        for (size_t i = 0; i < films.size(); i++)
         {
-            fantasyFilms[i]->draw();
+            films[i]->draw();
         }
-        for (size_t i = 0; i < fantasyFilms.size(); i++)
+        for (size_t i = 0; i < films.size(); i++)
         {
-            if (fantasyFilms[i] == m_active_film)
+            if (films[i] == m_active_film)
             {
-                fantasyFilms[i]->update();
+                films[i]->update();
             }
         }
         break;
     case ADVENTURE:
-        for (size_t i = 0; i < adventureFilms.size(); i++)
+        films = adventureFilms;
+        for (size_t i = 0; i < films.size(); i++)
         {
-            adventureFilms[i]->draw();
+            films[i]->draw();
         }
-        for (size_t i = 0; i < adventureFilms.size(); i++)
+        for (size_t i = 0; i < films.size(); i++)
         {
-            if (adventureFilms[i] == m_active_film)
+            if (films[i] == m_active_film)
             {
-                adventureFilms[i]->update();
+                films[i]->update();
             }
         }
         break;
@@ -229,7 +234,7 @@ void FilmBrowser::draw()
 void FilmBrowser::init()
 {
 
-    allFilms.push_back(new Film("Fight Club", "1999", "David Fincher", "Brad Pitt,Edward Norton", { Drama,Action}, "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.",0));
+    allFilms.push_back(new Film("Fight Club", "1999", "David Fincher", "Brad Pitt,Edward Norton", { Drama}, "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.",0));
     allFilms.push_back(new Film("Schindler's List", "1993", "Steven Spielberg", "Liam Neeson, Ralph Fiennes, Ben Kingsley", { Drama,History }, "In German - occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",1));
     allFilms.push_back(new Film("The Godfather", "1972", "Francis Ford Coppola", "Al Pacino,James Caan,Marlon Brando", { Drama,History }, "The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son.",2));
     allFilms.push_back(new Film("The Terminator", "1984", "James Cameron", "Arnold Schwarzeneger,Linda Hamilton,Michael Biehn", { SciFi,Action }, "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.",3));
@@ -267,13 +272,12 @@ void FilmBrowser::init()
             {
                 fantasyFilms.push_back(allFilms[i]);
             }
-            else if (allFilms[i]->getFilmGenre()[j]->getKind() == "SciFI")
+            else if (allFilms[i]->getFilmGenre()[j]->getKind() == "SciFi")
             {
                 scifiFilms.push_back(allFilms[i]);
             }
         }
     }
-
 
     for (size_t i = 0; i < allFilms.size(); i++)
     {
