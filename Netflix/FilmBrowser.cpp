@@ -97,132 +97,77 @@ void FilmBrowser::draw()
     graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 
     //draw film
-    if (state == START)
-    {
-        films = allFilms;
-        for (size_t i = 0; i < films.size(); i++)
-        {
-            films[i]->draw();
-        }
-
-        if (startingFilm)
-        {
-
-            m_active_film = films[0];
-            m_active_film->setActive(true);
-            startingFilm = false;
-        }
-
-        for (size_t i = 0; i < films.size(); i++)
-        {
-            if (films[i] == m_active_film)
-            {
-                films[i]->update();
-            }
-        }
-    }
 
     switch (state)
     {
+    case START:
+        if (startingFilm)
+        {
+            m_active_film = allFilms[0];
+            m_active_film->setActive(true);
+            startingFilm = false;
+        }
+        filterFilms(allFilms);
+        for (size_t i = 0; i < allFilms.size(); i++)
+        {
+            allFilms[i]->setX((86) + (i * 104));
+            allFilms[i]->setY(100);
+        }
+        break;
     case DRAMA:
-
-        films = dramaFilms;
-        for (size_t i = 0; i < films.size(); i++)
+        filterFilms(dramaFilms);
+        for (size_t i = 0; i < dramaFilms.size(); i++)
         {
-            films[i]->draw();
+            dramaFilms[i]->setX((320) + (i * 104));
+            dramaFilms[i]->setY(100);
         }
-        for (size_t i = 0; i < films.size(); i++)
-        {
-            if (films[i] == m_active_film)
-            {
-                films[i]->update();
-            }
-        }
-
         break;
     case HISTORY:
-        films = historyFilms;
-        for (size_t i = 0; i < films.size(); i++)
+        filterFilms(historyFilms);
+        for (size_t i = 0; i < historyFilms.size(); i++)
         {
-            films[i]->draw();
-        }
-        for (size_t i = 0; i < films.size(); i++)
-        {
-            if (films[i] == m_active_film)
-            {
-                films[i]->update();
-            }
+            historyFilms[i]->setX((420) + (i * 104));
+            historyFilms[i]->setY(100);
         }
         break;
     case SCIFI:
-        films = scifiFilms;
-        for (size_t i = 0; i < films.size(); i++)
+        filterFilms(scifiFilms);
+        for (size_t i = 0; i < scifiFilms.size(); i++)
         {
-            films[i]->draw();
+            scifiFilms[i]->setX((480) + (i * 104));
+            scifiFilms[i]->setY(100);
         }
-        for (size_t i = 0; i < films.size(); i++)
-        {
-            if (films[i] == m_active_film)
-            {
-                films[i]->update();
-            }
-        }
-
         break;
     case ACTION:
-        films = actionFilms;
-        for (size_t i = 0; i < films.size(); i++)
+        filterFilms(actionFilms);
+        for (size_t i = 0; i < actionFilms.size(); i++)
         {
-            films[i]->draw();
-        }
-        for (size_t i = 0; i < films.size(); i++)
-        {
-            if (films[i] == m_active_film)
-            {
-                films[i]->update();
-            }
+            actionFilms[i]->setX((280) + (i * 104));
+            actionFilms[i]->setY(100);
         }
         break;
     case CRIME:
-        films = crimeFilms;
-        for (size_t i = 0; i < films.size(); i++)
+        filterFilms(crimeFilms);
+        for (size_t i = 0; i < crimeFilms.size(); i++)
         {
-            films[i]->draw();
-        }
-        for (size_t i = 0; i < films.size(); i++)
-        {
-            if (films[i] == m_active_film)
-            {
-                films[i]->update();
-            }
+            crimeFilms[i]->setX((480) + (i * 104));
+            crimeFilms[i]->setY(100);
         }
         break;
     case FANTASY:
-        films = fantasyFilms;
-        for (size_t i = 0; i < films.size(); i++)
+        filterFilms(fantasyFilms);
+        for (size_t i = 0; i < fantasyFilms.size(); i++)
         {
-            films[i]->draw();
-        }
-        for (size_t i = 0; i < films.size(); i++)
-        {
-            if (films[i] == m_active_film)
-            {
-                films[i]->update();
-            }
+            fantasyFilms[i]->setX((420) + (i * 104));
+            fantasyFilms[i]->setY(100);
         }
         break;
     case ADVENTURE:
-        films = adventureFilms;
-        for (size_t i = 0; i < films.size(); i++)
+        filterFilms(adventureFilms);
+        for (size_t i = 0; i < adventureFilms.size(); i++)
         {
-            films[i]->draw();
-        }
-        for (size_t i = 0; i < films.size(); i++)
-        {
-            if (films[i] == m_active_film)
-            {
-                films[i]->update();
-            }
+            adventureFilms[i]->setX((320) + (i * 104));
+            adventureFilms[i]->setY(100);
         }
         break;
     default:
@@ -279,12 +224,6 @@ void FilmBrowser::init()
         }
     }
 
-    for (size_t i = 0; i < allFilms.size(); i++)
-    {
-        allFilms[i]->setX(86 + (i * 104));
-        allFilms[i]->setY(100);
-    }
-
 
 }
 
@@ -295,6 +234,22 @@ FilmBrowser* FilmBrowser::getInstance()
         m_instance = new FilmBrowser();
     }
     return m_instance;
+}
+
+void FilmBrowser::filterFilms(std::vector<Film*> f)
+{
+    films = f;
+    for (size_t i = 0; i < films.size(); i++)
+    {
+        films[i]->draw();
+    }
+    for (size_t i = 0; i < films.size(); i++)
+    {
+        if (films[i] == m_active_film)
+        {
+            films[i]->update();
+        }
+    }
 }
 
 FilmBrowser::~FilmBrowser()

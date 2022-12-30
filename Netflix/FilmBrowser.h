@@ -41,6 +41,7 @@ public:
 	void init();
 	static FilmBrowser* getInstance();
 	static void releaseInstance() { if (m_instance)delete m_instance; m_instance = nullptr;};
+	void filterFilms(std::vector<Film*> f);
 	~FilmBrowser();
 	FilmBrowser() {};
 };
