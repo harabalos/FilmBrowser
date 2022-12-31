@@ -29,6 +29,7 @@ public:
 	Film(string name, string productionDate, string director, string protagonist, std::vector<GenreButton*> filmGenre ,string summary,int i);
 	~Film();
 	GenreButton* m_active_button = nullptr;
+	NextButton* m_active_nxtbutton = nullptr;
 	void update();
 	void draw();
 	void init(int choice);

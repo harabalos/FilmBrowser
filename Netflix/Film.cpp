@@ -17,6 +17,7 @@ void Film::update()
 	float my = graphics::windowToCanvasX(ms.cur_pos_y);
 
 	GenreButton* cur_but = nullptr;
+	NextButton* cur_nxtBut = nullptr;
 
 
 	graphics::Brush br;
@@ -68,9 +69,41 @@ void Film::update()
 	nextButtonL->setHighlight(nextButtonL->contains(mx, my, 820, 370, 120));
 
 
-	nextButtonL->setHighlight1(nextButtonL->contains(mx, my));
-	nextButtonR->setHighlight1(nextButtonR->contains(mx, my , 920,370,20));
+	if (nextButtonL->contains(mx, my))
+	{
+		nextButtonL->setHighlight1(true);
+		cur_nxtBut = nextButtonL;
+	}
+	else
+	{
+		nextButtonL->setHighlight1(false);
+	}
 
+	if (nextButtonR->contains(mx, my, 920, 370, 20))
+	{
+		nextButtonR->setHighlight1(true);
+		cur_nxtBut = nextButtonR;
+	}
+	else
+	{
+		nextButtonR->setHighlight1(false);
+	}
+
+
+	if (ms.button_left_pressed && cur_nxtBut)
+	{
+		m_active_nxtbutton = cur_nxtBut;
+		m_active_nxtbutton->setActive(true);
+
+		if (m_active_nxtbutton == nextButtonR)
+		{
+			nextButtonL->setActive(false);
+		}
+		else
+		{
+			nextButtonR->setActive(false);
+		}
+	}
 
 	for (size_t i = 0; i < getFilmGenre().size(); i++)
 	{
