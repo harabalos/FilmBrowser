@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <filesystem>
+#include "NextButton.h"
 #include "GenreButton.h"
 using namespace std;
 
@@ -19,6 +21,7 @@ private:
 	string summary;
 	int i;
 
+
 	bool m_highlighted = false;
 	bool m_active = false;
 
@@ -36,6 +39,8 @@ public:
 	std::vector<GenreButton*>  getFilmGenre();
 	string getSummary();
 	int geti();
+	NextButton* nextButtonL = new NextButton(true);
+	NextButton* nextButtonR = new NextButton(false);
 
 	void setX(float x) { m_pos[0] = x; };
 	void setY(float y) { m_pos[1] = y; };

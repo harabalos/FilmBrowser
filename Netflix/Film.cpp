@@ -3,6 +3,7 @@
 #include "config.h"
 #include "Button.h"
 #include "GenreButton.h"
+#include "NextButton.h"
 #include "FilmBrowser.h"
 
 
@@ -51,11 +52,31 @@ void Film::update()
 		graphics::drawText(10, 420, 16, getSummary(), br);
 	}
 
-	
+	br.fill_color[0] = 1.0f;
+	br.fill_color[1] = 1.0f;
+	br.fill_color[2] = 1.0f;
+	br.fill_opacity = 1.0f;
+	br.texture = ASSET_PATH + std::string("pic" + to_string(geti()) + "V1.png");
+	br.outline_opacity = 1.0f;
+	br.fill_opacity = 1.0f;
+	graphics::drawRect(820, 370, 256, 144, br);
+
+	nextButtonR->draw();
+	nextButtonL->draw();
+
+	nextButtonR->setHighlight(nextButtonR->contains(mx, my, 820, 370, 120));
+	nextButtonL->setHighlight(nextButtonL->contains(mx, my, 820, 370, 120));
+
+
+	nextButtonL->setHighlight1(nextButtonL->contains(mx, my));
+	nextButtonR->setHighlight1(nextButtonR->contains(mx, my , 920,370,20));
+
+
 	for (size_t i = 0; i < getFilmGenre().size(); i++)
 	{
-		getFilmGenre()[i]->draw(i);
+		getFilmGenre()[i]->draw();
 	}
+
 
 
 	for (auto button : getFilmGenre())
@@ -187,6 +208,7 @@ int Film::geti()
 {
 	return i;
 }
+
 
 bool Film::contains(float x, float y)
 {

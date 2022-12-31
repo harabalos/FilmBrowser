@@ -30,6 +30,9 @@
     <ClCompile Include="GenreButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NextButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GenreButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NextButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

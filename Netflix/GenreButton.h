@@ -7,9 +7,9 @@ protected:
 public:
 	GenreButton(std::string kind);
 	~GenreButton();
-	void widgetSize(float& x, float& y, std::string kind) override;
-	void widgetPos(float& x, float& y, float num1, float num2) override;
-	void draw(int i) override;
+	//void widgetSize(float& x, float& y, std::string kind) override;
+	//void widgetPos(float& x, float& y, float num1, float num2) override;
+	void draw() override;
 	void update() override;
 	std::string getKind();
 

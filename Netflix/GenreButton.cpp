@@ -14,22 +14,22 @@ GenreButton::~GenreButton()
 {
 }
 
-void GenreButton::widgetSize(float& x, float& y, std::string kind)
-{
-	float sum = 0;
-	for (char i : kind) {
-		sum += 7;
-	}
-	x = sum;
-}
+//void GenreButton::widgetSize(float& x, float& y, std::string kind)
+//{
+//	float sum = 0;
+//	for (char i : kind) {
+//		sum += 7;
+//	}
+//	x = sum;
+//}
 
-void GenreButton::widgetPos(float& x, float& y, float num1, float num2)
-{
-	x = x + num1;
-	y = y + num2;
-}
+//void GenreButton::widgetPos(float& x, float& y, float num1, float num2)
+//{
+//	x = x + num1;
+//	y = y + num2;
+//}
 
-void GenreButton::draw(int i)
+void GenreButton::draw()
 {
 	float h = r_color + m_highlighted;
 	float glow = 0.2f + 0.8f * sinf(graphics::getGlobalTime());
