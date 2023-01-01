@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <vector>
-#include <filesystem>
 #include "NextButton.h"
 #include "GenreButton.h"
 using namespace std;
@@ -42,6 +41,8 @@ public:
 	int geti();
 	NextButton* nextButtonL = new NextButton(true);
 	NextButton* nextButtonR = new NextButton(false);
+	int j = 1;
+	int last = 6;
 
 	void setX(float x) { m_pos[0] = x; };
 	void setY(float y) { m_pos[1] = y; };
@@ -50,7 +51,6 @@ public:
 	void setActive(bool a) { m_active = a; };
 
 	bool contains(float x, float y);
-
-
+	bool fileExists(const char* path);
 
 };

@@ -6,7 +6,6 @@
 #include "NextButton.h"
 #include "FilmBrowser.h"
 
-
 void Film::update()
 {
 
@@ -53,57 +52,78 @@ void Film::update()
 		graphics::drawText(10, 420, 16, getSummary(), br);
 	}
 
-	br.fill_color[0] = 1.0f;
-	br.fill_color[1] = 1.0f;
-	br.fill_color[2] = 1.0f;
-	br.fill_opacity = 1.0f;
-	br.texture = ASSET_PATH + std::string("pic" + to_string(geti()) + "V1.png");
-	br.outline_opacity = 1.0f;
-	br.fill_opacity = 1.0f;
-	graphics::drawRect(820, 370, 256, 144, br);
 
-	nextButtonR->draw();
-	nextButtonL->draw();
-
-	nextButtonR->setHighlight(nextButtonR->contains(mx, my, 820, 370, 120));
-	nextButtonL->setHighlight(nextButtonL->contains(mx, my, 820, 370, 120));
+		br.fill_color[0] = 1.0f;
+		br.fill_color[1] = 1.0f;
+		br.fill_color[2] = 1.0f;
+		br.fill_opacity = 1.0f;
+		string shotPath = ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot" + to_string(j) + ".png");
+		br.texture = ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot" + to_string(j) + ".png");
+		br.outline_opacity = 1.0f;
+		br.fill_opacity = 1.0f;
+		graphics::drawRect(820, 370, 256, 144, br);
 
 
-	if (nextButtonL->contains(mx, my))
-	{
-		nextButtonL->setHighlight1(true);
-		cur_nxtBut = nextButtonL;
-	}
-	else
-	{
-		nextButtonL->setHighlight1(false);
-	}
-
-	if (nextButtonR->contains(mx, my, 920, 370, 20))
-	{
-		nextButtonR->setHighlight1(true);
-		cur_nxtBut = nextButtonR;
-	}
-	else
-	{
-		nextButtonR->setHighlight1(false);
-	}
-
-
-	if (ms.button_left_pressed && cur_nxtBut)
-	{
-		m_active_nxtbutton = cur_nxtBut;
-		m_active_nxtbutton->setActive(true);
-
-		if (m_active_nxtbutton == nextButtonR)
+		if (fileExists((ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot2.png")).c_str()))
 		{
-			nextButtonL->setActive(false);
+			nextButtonR->draw();
+			nextButtonL->draw();
+
+			nextButtonR->setHighlight(nextButtonR->contains(mx, my, 820, 370, 120));
+			nextButtonL->setHighlight(nextButtonL->contains(mx, my, 820, 370, 120));
+
+
+			if (nextButtonL->contains(mx, my))
+			{
+				nextButtonL->setHighlight1(true);
+				cur_nxtBut = nextButtonL;
+			}
+			else
+			{
+				nextButtonL->setHighlight1(false);
+			}
+
+			if (nextButtonR->contains(mx, my, 920, 370, 20))
+			{
+				nextButtonR->setHighlight1(true);
+				cur_nxtBut = nextButtonR;
+			}
+			else
+			{
+				nextButtonR->setHighlight1(false);
+			}
+
+
+			if (ms.button_left_pressed && cur_nxtBut)
+			{
+				m_active_nxtbutton = cur_nxtBut;
+				m_active_nxtbutton->setActive(true);
+
+				if (m_active_nxtbutton == nextButtonR)
+				{
+					nextButtonL->setActive(false);
+					j++;
+					if (!fileExists((ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot" + to_string(j) + ".png")).c_str()))
+					{
+						j = 1;
+					}
+				}
+				else
+				{
+					nextButtonR->setActive(false);
+					j--;
+					if (!fileExists((ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot" + to_string(j) + ".png")).c_str()))
+					{
+						while (!fileExists((ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot" + to_string(last) + ".png")).c_str()))
+						{
+							last--;
+						}
+						j = last;
+					}
+				}
+			}
 		}
-		else
-		{
-			nextButtonR->setActive(false);
-		}
-	}
+
 
 	for (size_t i = 0; i < getFilmGenre().size(); i++)
 	{
@@ -246,4 +266,17 @@ int Film::geti()
 bool Film::contains(float x, float y)
 {
 	return distance(x, y, m_pos[0], m_pos[1]) < 50;
+}
+
+bool Film::fileExists(const char* path)
+{
+	
+		const char* dir = path;
+		struct stat sb;
+		if (stat(dir, &sb) == 0)
+			return true;
+		else
+			return false;
+
+		return 0;
 }

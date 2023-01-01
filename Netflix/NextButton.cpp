@@ -28,7 +28,7 @@ void NextButton::draw()
 
 	if (dir)
 	{
-		br.fill_color[0] = 0.5f + m_active;
+		br.fill_color[0] = r_color;
 		br.fill_color[1] = g_color;
 		br.fill_color[2] = b_color;
 		br.fill_opacity = 1.0f;
@@ -39,7 +39,7 @@ void NextButton::draw()
 	}
 	else
 	{
-		br.fill_color[0] = 0.5f + m_active;
+		br.fill_color[0] = r_color;
 		br.fill_color[1] = g_color;
 		br.fill_color[2] = b_color;
 		br.fill_opacity = 1.0f;
