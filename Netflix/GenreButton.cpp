@@ -10,9 +10,13 @@
 GenreButton::GenreButton(std::string kind)
 	:Button{ x_pos =48 , y_pos = 285,size_x = 42, size_y = 16, r_color = 0.65f, g_color = 0.65f, b_color = 0.65f }, kind{ kind } {}
 
+GenreButton::GenreButton(float x_pos, float y_pos, float size_x, float size_y, float r_color, float g_color, float b_color, std::string kind)
+	:Button{ x_pos = x_pos , y_pos = y_pos , size_x = size_x , size_y = size_y , r_color = r_color , g_color = g_color , b_color = b_color }, kind{ kind } {}
+
 GenreButton::~GenreButton()
 {
 }
+
 
 //void GenreButton::widgetSize(float& x, float& y, std::string kind)
 //{

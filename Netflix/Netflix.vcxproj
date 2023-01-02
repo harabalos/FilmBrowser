@@ -143,6 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Dock.cpp" />
     <ClCompile Include="GenreButton.cpp" />
     <ClCompile Include="Film.cpp" />
     <ClCompile Include="FilmBrowser.cpp" />
@@ -151,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
+    <ClInclude Include="Dock.h" />
     <ClInclude Include="GenreButton.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="FilmBrowser.h" />

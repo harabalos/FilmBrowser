@@ -274,9 +274,11 @@ bool Film::fileExists(const char* path)
 		const char* dir = path;
 		struct stat sb;
 		if (stat(dir, &sb) == 0)
+		{
 			return true;
+		}
 		else
+		{
 			return false;
-
-		return 0;
+		}
 }

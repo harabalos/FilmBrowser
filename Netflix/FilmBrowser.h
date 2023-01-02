@@ -2,6 +2,7 @@
 #include "Film.h"
 #include <vector>
 #include "GenreButton.h"
+#include "Dock.h"
 
 
 class FilmBrowser
@@ -28,6 +29,7 @@ protected:
 	std::vector<Film*> adventureFilms;
 	Film* m_active_film = nullptr;
 	film_state state = START;
+	Dock* dock = new Dock();
 
 
 

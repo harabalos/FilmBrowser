@@ -30,6 +30,15 @@ void FilmBrowser::update()
 
     }
 
+    if (dock->contains(mx, my,500,5,40))
+    {
+        dock->setActive(true);
+    }
+    else if (!dock->contains(mx, my, 500, 5, 270))
+    {
+        dock->setActive(false);
+    }
+
     if (ms.button_left_pressed && cur_film)
     {
         m_active_film = cur_film;
@@ -95,6 +104,8 @@ void FilmBrowser::draw()
     br.outline_opacity = 0.0f;
     br.gradient = true;
     graphics::drawRect(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
+
+
 
     //draw film
 
@@ -173,6 +184,13 @@ void FilmBrowser::draw()
     default:
         break;
     }
+
+
+    dock->draw();
+    dock->update();
+
+
+
 }
 
 
