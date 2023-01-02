@@ -16,6 +16,7 @@ public:
 	GenreButton* Crime = new GenreButton("Crime");
 	GenreButton* Fantasy = new GenreButton("Fantasy");
 	GenreButton* Adventure = new GenreButton("Adventure");
+	//vector<GenreButton*> filmGenres = {Drama,History ,SciFi ,Action ,Crime ,Fantasy ,Adventure };
 protected:
 	static FilmBrowser* m_instance;
 	std::vector<Film*> films;
@@ -32,8 +33,6 @@ protected:
 	Dock* dock = new Dock();
 
 
-
-	std::vector<GenreButton*> filmGenres;
 
 
 

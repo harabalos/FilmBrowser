@@ -12,11 +12,6 @@ NextButton::~NextButton()
 
 void NextButton::update()
 {
-	graphics::MouseState ms;
-	graphics::getMouseState(ms);
-
-	float mx = graphics::windowToCanvasX(ms.cur_pos_x);
-	float my = graphics::windowToCanvasX(ms.cur_pos_y);
 
 }
 

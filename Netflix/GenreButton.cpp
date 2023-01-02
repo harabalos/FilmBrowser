@@ -36,12 +36,32 @@ GenreButton::~GenreButton()
 void GenreButton::draw()
 {
 	float h = r_color + m_highlighted;
+
 	float glow = 0.2f + 0.8f * sinf(graphics::getGlobalTime());
 		graphics::Brush br;
-		br.fill_color[0] = h;
-		br.fill_color[1] = h;
-		br.fill_color[2] = h;
-		br.outline_opacity = glow * m_active;
+		if (kind == "Clear Filters")
+		{
+			if (!m_highlighted)
+			{
+				br.fill_color[0] = r_color;
+				br.fill_color[1] = g_color;
+				br.fill_color[2] = b_color;
+			}
+			else
+			{
+				br.fill_color[0] = r_color+ 0.2f;
+				br.fill_color[1] = g_color + 0.2f;
+				br.fill_color[2] = b_color + 0.2f;
+			}
+
+		}
+		else
+		{
+			br.fill_color[0] = h;
+			br.fill_color[1] = h;
+			br.fill_color[2] = h;
+		}
+		br.outline_opacity = 0.0f;
 		float size_x1 = 0;
 
 		widgetSize(size_x, size_y, kind);

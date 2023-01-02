@@ -58,33 +58,60 @@ void FilmBrowser::update()
         if (film->m_active_button == Drama)
         {
             state = DRAMA;
+            film->m_active_button = nullptr;
         }
         else if (film->m_active_button == History)
         {
             state = HISTORY;
+            film->m_active_button = nullptr;
         }
         else if (film->m_active_button == Crime)
         {
             state = CRIME;
+            film->m_active_button = nullptr;
         }
         else if (film->m_active_button == Action)
         {
             state = ACTION;
+            film->m_active_button = nullptr;
         }
         else if (film->m_active_button == Adventure)
         {
             state = ADVENTURE;
+            film->m_active_button = nullptr;
         }
         else if (film->m_active_button == Fantasy)
         {
             state = FANTASY;
+            film->m_active_button = nullptr;
         }
         else if (film->m_active_button == SciFi)
         {
             state = SCIFI;
+            film->m_active_button = nullptr;
         }
 
     }
+
+    if (dock->clearbutton->getActive())
+    {
+        state = START;
+    }
+
+    //if (dock->getActive())
+    //{
+    //    for (auto but : filmGenres)
+    //    {
+    //        but->setY(60);
+    //    }
+    //}
+    //else
+    //{
+    //    for (auto but : filmGenres)
+    //    {
+    //        but->setY(-90);
+    //    }
+    //}
 }
 
 void FilmBrowser::draw()
