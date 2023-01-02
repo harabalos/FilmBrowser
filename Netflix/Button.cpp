@@ -7,6 +7,11 @@ bool Button::contains(float x, float y)
 	return distance(x, y, x_pos, y_pos)<20;
 }
 
+bool Button::contains(float x, float y,float z)
+{
+	return distance(x, y, x_pos, y_pos) < z;
+}
+
 bool Button::contains(float x, float y, float x1, float y1,float z)
 {
 	return distance(x, y, x1, y1) < z;

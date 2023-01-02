@@ -149,6 +149,7 @@
     <ClCompile Include="FilmBrowser.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NextButton.cpp" />
+    <ClCompile Include="Slider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="FilmBrowser.h" />
     <ClInclude Include="Film.h" />
     <ClInclude Include="NextButton.h" />
+    <ClInclude Include="Slider.h" />
     <ClInclude Include="Widget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

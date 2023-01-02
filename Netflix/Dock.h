@@ -1,6 +1,7 @@
 #pragma once
 #include "Button.h"
 #include "GenreButton.h"
+#include "Slider.h"
 #include <vector>
 
 class Dock:public Button
@@ -8,7 +9,11 @@ class Dock:public Button
 
 public:
 	GenreButton* clearbutton = new GenreButton(680 , -90 , 70 , 25 , 0.7f , 0.7f , 0.0f , "Clear Filters" );
-	GenreButton* m_active_button = nullptr;
+	//GenreButton* m_active_button = nullptr;
+	Slider* m_active_sliderFrom = nullptr;
+	Slider* m_active_sliderTo = nullptr;
+	Slider* sliderFrom = new Slider(300, -90,8,16,0.7f,0.7f,0.7f);
+	Slider* sliderTo = new Slider(390, -90, 8, 16, 0.7f, 0.7f, 0.7f);
 
 	//GenreButton* Drama = new GenreButton(300, -90, 42, 16, 0.65f, 0.65f, 0.65f, "Drama");
 	//GenreButton* History = new GenreButton(350, -90, 42, 16, 0.65f, 0.65f, 0.65f, "History");
