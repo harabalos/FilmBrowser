@@ -53,7 +53,15 @@ void SearchBar::update()
     }
 
     graphics::setFont(ASSET_PATH"OpenSans-Regular.ttf");
-    graphics::drawText(x_pos - 90, y_pos + 4, 12, str, br);
+    if (str.length() < 28)
+    {
+        graphics::drawText(x_pos - 90, y_pos + 4, 12, str, br);
+    }
+    else
+    {
+        str.erase(str.begin());
+        graphics::drawText(x_pos - 90, y_pos + 4, 12, str, br);
+    }
 }
 
 SearchBar::SearchBar(float x_pos, float y_pos, float size_x, float size_y, float r_color, float g_color, float b_color)

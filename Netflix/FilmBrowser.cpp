@@ -327,13 +327,13 @@ string FilmBrowser::lowerCase(string str)
 
 FilmBrowser::~FilmBrowser()
 {
-    for (auto film : allFilms)
+    for (auto film : films)
     {
-        delete film;
         for (auto button : film->getFilmGenre())
         {
             delete button;
         }
+        delete film;
     }
     allFilms.clear();
 }

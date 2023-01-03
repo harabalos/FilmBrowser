@@ -215,7 +215,7 @@ void Film::init(int choice)
 
 	for (size_t i = 0; i < getFilmGenre().size(); i++)
 	{
-		getFilmGenre()[i]->setX(48 + (i * 60));
+		getFilmGenre()[i]->setX(58 + (i * 63));
 		getFilmGenre()[i]->setY(285 );
 
 	}
