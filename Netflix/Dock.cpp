@@ -22,6 +22,7 @@ void Dock::update()
     GenreButton* cur_clearButton = nullptr;
     Slider* cur_SliderFrom = nullptr;
     Slider* cur_SliderTo = nullptr;
+    SearchBar* cur_searchBar = nullptr;
     if (m_active)
     {
         setY(95);
@@ -42,6 +43,9 @@ void Dock::update()
         clearbutton->setY(-90);
         sliderFrom->setY(-90);
         sliderTo->setY(-90);
+        titleSearch->setY(-90);
+        actorSearch->setY(-90);
+        directorSearch->setY(-90);
 
         //for (auto but : filmGenres)
         //{
@@ -154,6 +158,38 @@ void Dock::update()
         sliderTo->setX(390);
     }
 
+    for (auto sb : searchbars)
+    {
+        if (sb->contains(mx, my))
+        {
+            sb->setHighlight(true);
+            cur_searchBar = sb;
+        }
+        else
+        {
+            sb->setHighlight(false);
+        }
+    }
+
+
+    if (ms.button_left_pressed && cur_searchBar)
+    {
+        m_active_searchBar = cur_searchBar;
+        m_active_searchBar->setActive(true);
+        for (auto sb : searchbars)
+        {
+            if (sb != m_active_searchBar)
+            {
+                sb->setActive(false);
+            }
+        }
+    }
+
+
+
+
+
+
 
 
 
@@ -206,7 +242,10 @@ void Dock::draw()
     clearbutton->draw();
     sliderFrom->draw();
     sliderTo->draw();
-
+    for (auto sb : searchbars)
+    {
+        sb->update();
+    }
 
     //for (auto but : filmGenres)
     //{

@@ -15,11 +15,13 @@ public:
 	//GenreButton* m_active_button = nullptr;
 	Slider* m_active_sliderFrom = nullptr;
 	Slider* m_active_sliderTo = nullptr;
+	SearchBar* m_active_searchBar = nullptr;
 	Slider* sliderFrom = new Slider(300, -90,8,16,0.7f,0.7f,0.7f,true);
 	Slider* sliderTo = new Slider(390, -90, 8, 16, 0.7f, 0.7f, 0.7f,false);
 	SearchBar* titleSearch = new SearchBar(635, -90, 200, 18,0.7f,0.7f,0.7f);
 	SearchBar* actorSearch = new SearchBar(635, -90, 200, 18,0.7f,0.7f,0.7f);
 	SearchBar* directorSearch = new SearchBar(635, -90, 200, 18,0.7f,0.7f,0.7f);
+	std::vector<SearchBar*> searchbars = { titleSearch ,actorSearch,directorSearch };
 
 	//GenreButton* Drama = new GenreButton(300, -90, 42, 16, 0.65f, 0.65f, 0.65f, "Drama");
 	//GenreButton* History = new GenreButton(350, -90, 42, 16, 0.65f, 0.65f, 0.65f, "History");
