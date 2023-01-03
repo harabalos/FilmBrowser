@@ -3,6 +3,7 @@
 #include "config.h"
 #include "Film.h"
 #include "Button.h"
+#include <algorithm>
 
 bool startingFilm = true;
 FilmBrowser* FilmBrowser::m_instance = nullptr;
@@ -96,6 +97,11 @@ void FilmBrowser::update()
     if (dock->clearbutton->getActive())
     {
         state = START;
+        for (auto sb : dock->searchbars)
+        {
+            sb->str = "";
+        }
+        dock->m_active_searchBar = nullptr;
     }
 
 
@@ -153,6 +159,7 @@ void FilmBrowser::draw()
             allFilms[i]->setX((86) + (i * 104));
             allFilms[i]->setY(100);
         }
+
         break;
     case DRAMA:
         filterFilms(dramaFilms);
@@ -230,7 +237,7 @@ void FilmBrowser::init()
     allFilms.push_back(new Film("Schindler's List", 1993, "Steven Spielberg", "Liam Neeson, Ralph Fiennes, Ben Kingsley", { Drama,History }, "In German - occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",1));
     allFilms.push_back(new Film("The Godfather", 1972, "Francis Ford Coppola", "Al Pacino,James Caan,Marlon Brando", { Drama,History }, "The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son.",2));
     allFilms.push_back(new Film("The Terminator",1984, "James Cameron", "Arnold Schwarzeneger,Linda Hamilton,Michael Biehn", { SciFi,Action }, "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.",3));
-    allFilms.push_back(new Film("Indian Jones and the Raiders of the Lost Ark", 1981, "Steven Spielberg", "Harrison Ford,Karen Allen,Paul Freeman", { Action,Adventure }, "KrioraArchaeology professor Indiana Jones ventures to seize a biblical artef act known as the Ark of the Covenant.While doing so, he puts up a fight against Renee and a troop of Nazis.",4));
+    allFilms.push_back(new Film("Indiana Jones and the Raiders of the Lost Ark", 1981, "Steven Spielberg", "Harrison Ford,Karen Allen,Paul Freeman", { Action,Adventure }, "KrioraArchaeology professor Indiana Jones ventures to seize a biblical artef act known as the Ark of the Covenant.While doing so, he puts up a fight against Renee and a troop of Nazis.",4));
     allFilms.push_back(new Film("Indiana Jones and the Temple of Doom", 1984, "Steven Spielberg", "HarrisonFord, Kate Capshaw, Ke Huy Quan", { Action,Adventure }, "A skirmish in Shanghai puts archaeologist Indiana Jones, his partner Short Round and singer Willie Scott crossing paths with an Indian village desperate to reclaim a rock stolen by a secret cult beneath the catacombs of an ancient palace.",5));
     allFilms.push_back(new Film("Pulp Fiction", 1994, "Quentin Tarantino", "John Travolta, SamuelL. Jackson, Uma Thurman", { Drama,Crime }, "The lives of two rob hitmen, aboxer, a gangster and his wife, and apair of diner bandits inter twine in four tales of violence andredemption.",6));
     allFilms.push_back(new Film("Star Wars:Episode IV- A New Hope", 1977, "George Lucas", "CarrieFisher, Harrison Ford, Mark Hamill", { Action,Fantasy, Adventure }, "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.",7));
@@ -288,7 +295,10 @@ void FilmBrowser::filterFilms(std::vector<Film*> f)
     films = f;
     for (size_t i = 0; i < films.size(); i++)
     {
-        if (dock->sliderFrom->yearsFrom<films[i]->getProductionDate()&& dock->sliderTo->yearsTo > films[i]->getProductionDate()) //ARGEI POLU ME AFTO
+        if (dock->sliderFrom->yearsFrom<films[i]->getProductionDate()&& dock->sliderTo->yearsTo > films[i]->getProductionDate()
+            &&(dock->titleSearch->str == "" || lowerCase(films[i]->getName()).find(dock->titleSearch->str) != string::npos)
+            && (dock->actorSearch->str == "" || lowerCase(films[i]->getProtagonist()).find(dock->actorSearch->str) != string::npos)
+                && (dock->directorSearch->str == "" || lowerCase(films[i]->getDirector()).find(dock->directorSearch->str) != string::npos)) //ARGEI POLU ME AFTO
         {
             films[i]->draw();
         }
@@ -297,12 +307,22 @@ void FilmBrowser::filterFilms(std::vector<Film*> f)
     {
         if (films[i] == m_active_film)
         {
-            if (dock->sliderFrom->yearsFrom<films[i]->getProductionDate() && dock->sliderTo->yearsTo > films[i]->getProductionDate()) //ARGEI POLU ME AFTO
+            if (dock->sliderFrom->yearsFrom<films[i]->getProductionDate() && dock->sliderTo->yearsTo > films[i]->getProductionDate()
+                && (dock->titleSearch->str == "" || lowerCase(films[i]->getName()).find(dock->titleSearch->str) != string::npos)
+                && (dock->actorSearch->str == "" || lowerCase(films[i]->getProtagonist()).find(dock->actorSearch->str) != string::npos)
+                    && (dock->directorSearch->str == "" || lowerCase(films[i]->getDirector()).find(dock->directorSearch->str) != string::npos)) //ARGEI POLU ME AFTO
+            
             {
                 films[i]->update();
             }
         }
     }
+}
+
+string FilmBrowser::lowerCase(string str)
+{
+    std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+    return str;
 }
 
 FilmBrowser::~FilmBrowser()

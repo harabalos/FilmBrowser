@@ -39,10 +39,19 @@ void SearchBar::update()
             graphics::scancode_t sct = static_cast<graphics::scancode_t>(i);
             if (graphics::getKeyState(sct))
             {
-                str += static_cast<char>(i+61);
+                str += static_cast<char>(i+93);
             }
         }
     }
+    if (graphics::getKeyState(graphics::SCANCODE_BACKSPACE))
+    {
+        str = str.substr(0, str.size() - 1);
+    }
+    if (graphics::getKeyState(graphics::SCANCODE_SPACE))
+    {
+        str += static_cast<char>(32);
+    }
+
     graphics::setFont(ASSET_PATH"OpenSans-Regular.ttf");
     graphics::drawText(x_pos - 90, y_pos + 4, 12, str, br);
 }
