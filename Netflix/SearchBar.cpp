@@ -32,7 +32,6 @@ void SearchBar::update()
     br.fill_color[0] = 0.0f;
     br.fill_color[1] = 0.0f;
     br.fill_color[2] = 0.0f;
-    std::string str;
     if (m_active)
     {
         for (int i = graphics::SCANCODE_A; i < graphics::SCANCODE_Z; i++)
@@ -40,14 +39,12 @@ void SearchBar::update()
             graphics::scancode_t sct = static_cast<graphics::scancode_t>(i);
             if (graphics::getKeyState(sct))
             {
-                graphics::setFont(ASSET_PATH"OpenSans-Regular.ttf");
-                graphics::drawText(x_pos - 90, y_pos + 4, 12, "A",br);
+                str += static_cast<char>(i+61);
             }
         }
-
-
-
     }
+    graphics::setFont(ASSET_PATH"OpenSans-Regular.ttf");
+    graphics::drawText(x_pos - 90, y_pos + 4, 12, str, br);
 }
 
 SearchBar::SearchBar(float x_pos, float y_pos, float size_x, float size_y, float r_color, float g_color, float b_color)
