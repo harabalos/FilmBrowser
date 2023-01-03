@@ -4,6 +4,8 @@
 #include "Slider.h"
 #include <vector>
 
+
+
 class Dock:public Button
 {
 
@@ -12,8 +14,8 @@ public:
 	//GenreButton* m_active_button = nullptr;
 	Slider* m_active_sliderFrom = nullptr;
 	Slider* m_active_sliderTo = nullptr;
-	Slider* sliderFrom = new Slider(300, -90,8,16,0.7f,0.7f,0.7f);
-	Slider* sliderTo = new Slider(390, -90, 8, 16, 0.7f, 0.7f, 0.7f);
+	Slider* sliderFrom = new Slider(300, -90,8,16,0.7f,0.7f,0.7f,true);
+	Slider* sliderTo = new Slider(390, -90, 8, 16, 0.7f, 0.7f, 0.7f,false);
 
 	//GenreButton* Drama = new GenreButton(300, -90, 42, 16, 0.65f, 0.65f, 0.65f, "Drama");
 	//GenreButton* History = new GenreButton(350, -90, 42, 16, 0.65f, 0.65f, 0.65f, "History");

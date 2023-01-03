@@ -140,10 +140,20 @@ void Dock::update()
 
     if (ms.button_left_released && cur_SliderTo)
     {
-        cur_SliderTo->setActive(false);
-        cur_SliderTo = nullptr;
+        m_active_sliderTo->setActive(false);
+        m_active_sliderTo = nullptr;
 
     }
+
+    if (clearbutton->getActive())
+    {
+        sliderFrom->setX(300);
+        sliderTo->setX(390);
+    }
+
+
+
+
 }
 
 void Dock::draw()
@@ -180,6 +190,7 @@ void Dock::draw()
     clearbutton->draw();
     sliderFrom->draw();
     sliderTo->draw();
+
 
     //for (auto but : filmGenres)
     //{

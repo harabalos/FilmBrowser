@@ -98,6 +98,8 @@ void FilmBrowser::update()
         state = START;
     }
 
+
+
     //if (dock->getActive())
     //{
     //    for (auto but : filmGenres)
@@ -286,13 +288,19 @@ void FilmBrowser::filterFilms(std::vector<Film*> f)
     films = f;
     for (size_t i = 0; i < films.size(); i++)
     {
-        films[i]->draw();
+        if (dock->sliderFrom->yearsFrom<stoi(films[i]->getProductionDate())&& dock->sliderTo->yearsTo > stoi(films[i]->getProductionDate()))
+        {
+            films[i]->draw();
+        }
     }
     for (size_t i = 0; i < films.size(); i++)
     {
         if (films[i] == m_active_film)
         {
-            films[i]->update();
+            if (dock->sliderFrom->yearsFrom<stoi(films[i]->getProductionDate()) && dock->sliderTo->yearsTo > stoi(films[i]->getProductionDate()))
+            {
+                films[i]->update();
+            }
         }
     }
 }

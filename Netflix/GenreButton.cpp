@@ -77,7 +77,7 @@ void GenreButton::draw()
 		br.fill_color[0] = 0.0f;
 		br.fill_color[1] = 0.0f;
 		br.fill_color[2] = 0.0f;
-		graphics::setFont(ASSET_PATH"OpenSans-Light.ttf");
+		graphics::setFont(ASSET_PATH"OpenSans-Regular.ttf");
 		graphics::drawText(((x_pos)-(kind.length()/2)*5.5) , y_pos + 3, 10, kind, br);
 		size_x1 = size_x;
 	
