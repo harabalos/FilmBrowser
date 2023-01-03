@@ -13,7 +13,7 @@ private:
 	float m_pos[2];
 
 	string name; 
-	string productionDate;
+	int productionDate;
 	string director;
 	string protagonist;
 	std::vector<GenreButton*> filmGenre;
@@ -25,14 +25,14 @@ private:
 	bool m_active = false;
 
 public:
-	Film(string name, string productionDate, string director, string protagonist, std::vector<GenreButton*> filmGenre ,string summary,int i);
+	Film(string name, int productionDate, string director, string protagonist, std::vector<GenreButton*> filmGenre ,string summary,int i);
 	~Film();
 	GenreButton* m_active_button = nullptr;
 	NextButton* m_active_nxtbutton = nullptr;
 	void update();
 	void draw();
 	void init(int choice);
-	string getProductionDate();
+	int getProductionDate();
 	string getName();
 	string getDirector();
 	string getProtagonist();

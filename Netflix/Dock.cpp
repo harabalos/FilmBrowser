@@ -28,6 +28,9 @@ void Dock::update()
         clearbutton->setY(60);
         sliderFrom->setY(150);
         sliderTo->setY(170);
+        titleSearch->setY(137);
+        actorSearch->setY(162);
+        directorSearch->setY(187);
         //for (auto but : filmGenres)
         //{
         //    but->setY(60);
@@ -186,6 +189,19 @@ void Dock::draw()
     graphics::drawText(x_pos - 235, y_pos + 40, 10, "Year:", br1);
     graphics::drawText(x_pos - 235, y_pos + 57, 10, "From:", br1);
     graphics::drawText(x_pos - 235, y_pos + 77, 10, "To:", br1);
+    //br1.outline_opacity = 1.0f;
+    //br1.fill_color[0] = 0.7f;
+    //br1.fill_color[1] = 0.7f;
+    //br1.fill_color[2] = 0.7f;
+    //br1.fill_opacity = 0.7f;
+    graphics::drawText(x_pos , y_pos +20 , 15, "Filter by:", br1);
+    graphics::drawText(x_pos , y_pos +45 , 15, "Title:", br1);
+    titleSearch->draw();
+    graphics::drawText(x_pos -10, y_pos +70 , 15, "Actor:", br1);
+    actorSearch->draw();
+    graphics::drawText(x_pos -25, y_pos +95 , 15, "Director:", br1);
+    directorSearch->draw();
+
 
     clearbutton->draw();
     sliderFrom->draw();

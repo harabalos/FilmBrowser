@@ -28,7 +28,7 @@ void Film::update()
 	graphics::drawText(30, 340, 16, "Stars:", br);
 	graphics::drawText(140, 340, 16, getProtagonist(), br);
 	graphics::drawText(30, 360, 16, "Year:", br);
-	graphics::drawText(140, 360, 16, getProductionDate(), br);
+	graphics::drawText(140, 360, 16, to_string(getProductionDate()), br);
 	graphics::drawText(30, 400, 16, "Summary:", br);
 	if (getSummary().size() > 70) {
 		std::string phrase1{ "" };
@@ -221,7 +221,7 @@ void Film::init(int choice)
 	}
 }
 
-Film::Film(std::string name, std::string productionDate, std::string director, std::string protagonist, std::vector<GenreButton*> filmGenre, std::string summary,int i)
+Film::Film(std::string name, int productionDate, std::string director, std::string protagonist, std::vector<GenreButton*> filmGenre, std::string summary,int i)
 	:name{ name }, productionDate{ productionDate }, director{ director }, protagonist{ protagonist }, filmGenre{ filmGenre }, summary{ summary }, i{i} {}
 
 Film::~Film()
@@ -232,7 +232,7 @@ std::string Film::getName() {
 	return name;
 }
 
-std::string Film::getProductionDate()
+int Film::getProductionDate()
 {
 	return productionDate;
 }
