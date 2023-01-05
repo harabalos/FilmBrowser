@@ -45,6 +45,7 @@ void FilmBrowser::update()
     {
         m_active_film = cur_film;
         m_active_film->setActive(true);
+        graphics::playSound(ASSET_PATH"browse.wav", 0.5f);
         for (auto film : films)
         {
             if (film != m_active_film)
@@ -73,6 +74,7 @@ void FilmBrowser::update()
     {
         m_active_button = cur_but;
         m_active_button->setActive(true);
+        graphics::playSound(ASSET_PATH"button.wav", 0.5f);
 
         for (auto button : dock->filmGenres)
         {
@@ -184,7 +186,7 @@ void FilmBrowser::draw()
     {
     case START:
         filterFilms(allFilms);
-        for (size_t i = 0; i < allFilms.size(); i++)
+        for (int i = 0; i < allFilms.size(); i++)
         {
             allFilms[i]->setX((86) + (i * 104));
             allFilms[i]->setY(100);
@@ -193,7 +195,7 @@ void FilmBrowser::draw()
         break;
     case DRAMA:
         filterFilms(dramaFilms);
-        for (size_t i = 0; i < dramaFilms.size(); i++)
+        for (int i = 0; i < dramaFilms.size(); i++)
         {
             dramaFilms[i]->setX((320) + (i * 104));
             dramaFilms[i]->setY(100);
@@ -201,7 +203,7 @@ void FilmBrowser::draw()
         break;
     case HISTORY:
         filterFilms(historyFilms);
-        for (size_t i = 0; i < historyFilms.size(); i++)
+        for (int i = 0; i < historyFilms.size(); i++)
         {
             historyFilms[i]->setX((420) + (i * 104));
             historyFilms[i]->setY(100);
@@ -209,7 +211,7 @@ void FilmBrowser::draw()
         break;
     case SCIFI:
         filterFilms(scifiFilms);
-        for (size_t i = 0; i < scifiFilms.size(); i++)
+        for (int i = 0; i < scifiFilms.size(); i++)
         {
             scifiFilms[i]->setX((480) + (i * 104));
             scifiFilms[i]->setY(100);
@@ -217,7 +219,7 @@ void FilmBrowser::draw()
         break;
     case ACTION:
         filterFilms(actionFilms);
-        for (size_t i = 0; i < actionFilms.size(); i++)
+        for (int i = 0; i < actionFilms.size(); i++)
         {
             actionFilms[i]->setX((280) + (i * 104));
             actionFilms[i]->setY(100);
@@ -225,7 +227,7 @@ void FilmBrowser::draw()
         break;
     case CRIME:
         filterFilms(crimeFilms);
-        for (size_t i = 0; i < crimeFilms.size(); i++)
+        for (int i = 0; i < crimeFilms.size(); i++)
         {
             crimeFilms[i]->setX((480) + (i * 104));
             crimeFilms[i]->setY(100);
@@ -233,7 +235,7 @@ void FilmBrowser::draw()
         break;
     case FANTASY:
         filterFilms(fantasyFilms);
-        for (size_t i = 0; i < fantasyFilms.size(); i++)
+        for (int i = 0; i < fantasyFilms.size(); i++)
         {
             fantasyFilms[i]->setX((420) + (i * 104));
             fantasyFilms[i]->setY(100);
@@ -241,7 +243,7 @@ void FilmBrowser::draw()
         break;
     case ADVENTURE:
         filterFilms(adventureFilms);
-        for (size_t i = 0; i < adventureFilms.size(); i++)
+        for (int i = 0; i < adventureFilms.size(); i++)
         {
             adventureFilms[i]->setX((320) + (i * 104));
             adventureFilms[i]->setY(100);
@@ -378,5 +380,6 @@ FilmBrowser::~FilmBrowser()
         }
         delete film;
     }
-    allFilms.clear();
+    films.clear();
+
 }

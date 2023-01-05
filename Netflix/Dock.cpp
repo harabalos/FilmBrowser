@@ -43,7 +43,12 @@ void Dock::update()
             if (anim > 1.0f) {
                 anim = 1.0f;
             }
-
+            if (playSoundMax)
+            {
+                graphics::playSound(ASSET_PATH"maximize.wav", 0.5f);
+                playSoundMax = false;
+            }
+            playSoundMin = true;
 
     }
     else
@@ -63,6 +68,12 @@ void Dock::update()
         Crime->setY(-90);
         Fantasy->setY(-90);
         Adventure->setY(-90);
+        playSoundMax = true;
+        if (playSoundMin)
+        {
+            graphics::playSound(ASSET_PATH"minimize.wav",0.5f);
+            playSoundMin = false;
+        }
 
     }
 
@@ -79,6 +90,7 @@ void Dock::update()
     if (ms.button_left_pressed && cur_clearButton)
     {
         clearbutton->setActive(true);
+        graphics::playSound(ASSET_PATH"button.wav", 0.5f);
     }
     else
     {

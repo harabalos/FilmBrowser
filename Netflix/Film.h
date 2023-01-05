@@ -10,7 +10,7 @@ using namespace std;
 class Film
 {
 private:
-	float m_pos[2];
+	int m_pos[2];
 
 	string name; 
 	int productionDate;

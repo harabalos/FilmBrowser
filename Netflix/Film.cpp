@@ -134,15 +134,15 @@ void Film::update()
 
 	for (auto button : getFilmGenre())
 	{
-    if (button->contains(mx, my))
-    {
-        button->setHighlight(true);
-        cur_but = button;
-    }
+		if (button->contains(mx, my))
+		{
+			button->setHighlight(true);
+			cur_but = button;
+		}
     else
-    {
-        button->setHighlight(false);
-    }
+		{
+			button->setHighlight(false);
+		}
 	}
 
 
@@ -150,6 +150,7 @@ void Film::update()
 	{
 		m_active_button = cur_but;
 		m_active_button->setActive(true);
+		graphics::playSound(ASSET_PATH"button.wav", 0.5f);
 
 		for (auto button : getFilmGenre())
 		{

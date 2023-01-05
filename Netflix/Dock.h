@@ -22,6 +22,8 @@ public:
 	SearchBar* actorSearch = new SearchBar(635, -90, 200, 18,0.7f,0.7f,0.7f);
 	SearchBar* directorSearch = new SearchBar(635, -90, 200, 18,0.7f,0.7f,0.7f);
 	std::vector<SearchBar*> searchbars = { titleSearch ,actorSearch,directorSearch };
+	bool playSoundMax = true;
+	bool playSoundMin = false;
 
 
 	GenreButton* Drama = new GenreButton(300,-90,55,16,0.65f,0.65f,0.65f,"Drama");
@@ -32,7 +34,7 @@ public:
 	GenreButton* Fantasy = new GenreButton(360, -90, 55, 16, 0.65f, 0.65f, 0.65f, "Fantasy");
 	GenreButton* Adventure = new GenreButton(420, -90, 55, 16, 0.65f, 0.65f, 0.65f, "Adventure");
 	std::vector<GenreButton*> filmGenres = { Drama,History ,SciFi ,Action ,Crime ,Fantasy ,Adventure };
-	float anim = 0.001f;
+	float anim = 0;
 	Dock();
 	~Dock();
 	void update();
