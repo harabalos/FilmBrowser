@@ -16,6 +16,7 @@ public:
 	GenreButton* Crime = new GenreButton("Crime");
 	GenreButton* Fantasy = new GenreButton("Fantasy");
 	GenreButton* Adventure = new GenreButton("Adventure");
+	GenreButton* m_active_button = nullptr;
 	//vector<GenreButton*> filmGenres = {Drama,History ,SciFi ,Action ,Crime ,Fantasy ,Adventure };
 protected:
 	static FilmBrowser* m_instance;

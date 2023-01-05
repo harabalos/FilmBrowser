@@ -32,10 +32,13 @@ void Dock::update()
         titleSearch->setY(137);
         actorSearch->setY(162);
         directorSearch->setY(187);
-        //for (auto but : filmGenres)
-        //{
-        //    but->setY(60);
-        //}
+        Drama->setY(70);
+        History->setY(70);
+        SciFi->setY(70);
+        Action->setY(70);
+        Crime->setY(90);
+        Fantasy->setY(90);
+        Adventure->setY(90);
     }
     else
     {
@@ -46,11 +49,14 @@ void Dock::update()
         titleSearch->setY(-90);
         actorSearch->setY(-90);
         directorSearch->setY(-90);
+        Drama->setY(-90);
+        History->setY(-90);
+        SciFi->setY(-90);
+        Action->setY(-90);
+        Crime->setY(-90);
+        Fantasy->setY(-90);
+        Adventure->setY(-90);
 
-        //for (auto but : filmGenres)
-        //{
-        //    but->setY(-90);
-        //}
     }
 
     if (clearbutton->contains(mx, my))
@@ -246,11 +252,12 @@ void Dock::draw()
     {
         sb->update();
     }
-
-    //for (auto but : filmGenres)
-    //{
-    //    but->draw();
-    //}
-
+    Drama->draw();
+    History->draw();
+    SciFi->draw();
+    Action->draw();
+    Crime->draw();
+    Fantasy->draw();
+    Adventure->draw();
 
 }

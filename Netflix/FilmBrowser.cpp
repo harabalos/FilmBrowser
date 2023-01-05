@@ -17,9 +17,10 @@ void FilmBrowser::update()
     float my = graphics::windowToCanvasX(ms.cur_pos_y);
 
     Film* cur_film = nullptr;
+    GenreButton* cur_but = nullptr;
     for (auto film : films)
     {
-        if (film->contains(mx, my))
+        if (film->contains(mx, my) && !dock->getActive())
         {
             film->setHighlight(true);
             cur_film = film;
@@ -54,42 +55,92 @@ void FilmBrowser::update()
         }
     }
 
+    for (auto button : dock->filmGenres)
+    {
+        if (button->contains(mx, my))
+        {
+            button->setHighlight(true);
+            cur_but = button;
+        }
+        else
+        {
+            button->setHighlight(false);
+        }
+
+    }
+
+    if (ms.button_left_pressed && cur_but)
+    {
+        m_active_button = cur_but;
+        m_active_button->setActive(true);
+
+        for (auto button : dock->filmGenres)
+        {
+            if (button != m_active_button)
+            {
+                button->setActive(false);
+            }
+        }
+    }
+
+
+
     for (auto film : films)
     {
-        if (film->m_active_button == Drama)
+        if (film->m_active_button == Drama || m_active_button == dock->Drama)
         {
             state = DRAMA;
+            startingFilm = true;
+            m_active_button = nullptr;
             film->m_active_button = nullptr;
         }
-        else if (film->m_active_button == History)
+        else if (film->m_active_button == History || m_active_button == dock->History)
         {
             state = HISTORY;
+            startingFilm = true;
+            m_active_button = nullptr;
             film->m_active_button = nullptr;
+
         }
-        else if (film->m_active_button == Crime)
+        else if (film->m_active_button == Crime || m_active_button == dock->Crime)
         {
             state = CRIME;
+            startingFilm = true;
+            m_active_button = nullptr;
             film->m_active_button = nullptr;
+
         }
-        else if (film->m_active_button == Action)
+        else if (film->m_active_button == Action|| m_active_button == dock->Action)
         {
             state = ACTION;
+            startingFilm = true;
+            m_active_button = nullptr;
             film->m_active_button = nullptr;
+
         }
-        else if (film->m_active_button == Adventure)
+        else if (film->m_active_button == Adventure || m_active_button == dock->Adventure)
         {
             state = ADVENTURE;
+            startingFilm = true;
+            m_active_button = nullptr;
             film->m_active_button = nullptr;
+
         }
-        else if (film->m_active_button == Fantasy)
+        else if (film->m_active_button == Fantasy || m_active_button == dock->Fantasy)
         {
             state = FANTASY;
+            startingFilm = true;
+            m_active_button = nullptr;
             film->m_active_button = nullptr;
+
         }
-        else if (film->m_active_button == SciFi)
+        else if (film->m_active_button == SciFi || m_active_button == dock->SciFi)
         {
             state = SCIFI;
+            startingFilm = true;
+            m_active_button = nullptr;
             film->m_active_button = nullptr;
+
         }
 
     }
@@ -105,21 +156,6 @@ void FilmBrowser::update()
     }
 
 
-
-    //if (dock->getActive())
-    //{
-    //    for (auto but : filmGenres)
-    //    {
-    //        but->setY(60);
-    //    }
-    //}
-    //else
-    //{
-    //    for (auto but : filmGenres)
-    //    {
-    //        but->setY(-90);
-    //    }
-    //}
 }
 
 void FilmBrowser::draw()
@@ -147,12 +183,6 @@ void FilmBrowser::draw()
     switch (state)
     {
     case START:
-        if (startingFilm)
-        {
-            m_active_film = allFilms[0];
-            m_active_film->setActive(true);
-            startingFilm = false;
-        }
         filterFilms(allFilms);
         for (size_t i = 0; i < allFilms.size(); i++)
         {
@@ -293,6 +323,19 @@ FilmBrowser* FilmBrowser::getInstance()
 void FilmBrowser::filterFilms(std::vector<Film*> f)
 {
     films = f;
+    for (auto film : films)
+    {
+        if (film != m_active_film)
+        {
+            film->setActive(false);
+        }
+    }
+    if (startingFilm)
+    {
+        m_active_film = films[0];
+        m_active_film->setActive(true);
+        startingFilm = false;
+    }
     for (size_t i = 0; i < films.size(); i++)
     {
         if (dock->sliderFrom->yearsFrom<films[i]->getProductionDate()&& dock->sliderTo->yearsTo > films[i]->getProductionDate()
