@@ -15,6 +15,7 @@ GenreButton::GenreButton(float x_pos, float y_pos, float size_x, float size_y, f
 
 GenreButton::~GenreButton()
 {
+	
 }
 
 void GenreButton::draw()

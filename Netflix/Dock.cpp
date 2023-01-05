@@ -25,23 +25,30 @@ void Dock::update()
     SearchBar* cur_searchBar = nullptr;
     if (m_active)
     {
-        setY(95);
-        clearbutton->setY(60);
-        sliderFrom->setY(150);
-        sliderTo->setY(170);
-        titleSearch->setY(137);
-        actorSearch->setY(162);
-        directorSearch->setY(187);
-        Drama->setY(70);
-        History->setY(70);
-        SciFi->setY(70);
-        Action->setY(70);
-        Crime->setY(90);
-        Fantasy->setY(90);
-        Adventure->setY(90);
+            anim += 0.1f;
+            setY(95 * anim);
+            clearbutton->setY(60*anim);
+            sliderFrom->setY(150 * anim);
+            sliderTo->setY(170 * anim);
+            titleSearch->setY(137 * anim);
+            actorSearch->setY(162 * anim);
+            directorSearch->setY(187 * anim);
+            Drama->setY(70 * anim);
+            History->setY(70 * anim);
+            SciFi->setY(70 * anim);
+            Action->setY(70 * anim);
+            Crime->setY(90 * anim);
+            Fantasy->setY(90 * anim);
+            Adventure->setY(90 * anim);
+            if (anim > 1.0f) {
+                anim = 1.0f;
+            }
+
+
     }
     else
     {
+        anim = 0.1f;
         setY(-110);
         clearbutton->setY(-90);
         sliderFrom->setY(-90);
@@ -191,14 +198,6 @@ void Dock::update()
         }
     }
 
-
-
-
-
-
-
-
-
 }
 
 void Dock::draw()
@@ -231,11 +230,6 @@ void Dock::draw()
     graphics::drawText(x_pos - 235, y_pos + 40, 10, "Year:", br1);
     graphics::drawText(x_pos - 235, y_pos + 57, 10, "From:", br1);
     graphics::drawText(x_pos - 235, y_pos + 77, 10, "To:", br1);
-    //br1.outline_opacity = 1.0f;
-    //br1.fill_color[0] = 0.7f;
-    //br1.fill_color[1] = 0.7f;
-    //br1.fill_color[2] = 0.7f;
-    //br1.fill_opacity = 0.7f;
     graphics::drawText(x_pos , y_pos +20 , 15, "Filter by:", br1);
     graphics::drawText(x_pos , y_pos +45 , 15, "Title:", br1);
     titleSearch->draw();
