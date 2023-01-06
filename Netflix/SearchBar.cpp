@@ -32,6 +32,7 @@ void SearchBar::update()
     br.fill_color[0] = 0.0f;
     br.fill_color[1] = 0.0f;
     br.fill_color[2] = 0.0f;
+    
     if (m_active)
     {
         for (int i = graphics::SCANCODE_A; i < graphics::SCANCODE_Z; i++)
@@ -67,6 +68,3 @@ void SearchBar::update()
 SearchBar::SearchBar(float x_pos, float y_pos, float size_x, float size_y, float r_color, float g_color, float b_color)
 	:Button{ x_pos = x_pos, y_pos = y_pos, size_x = size_x, size_y = size_y, r_color = r_color, g_color = g_color, b_color = b_color } {}
 
-SearchBar::~SearchBar()
-{
-}

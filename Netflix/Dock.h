@@ -12,7 +12,6 @@ class Dock:public Button
 
 public:
 	GenreButton* clearbutton = new GenreButton(680 , -90 , 70 , 25 , 0.7f , 0.7f , 0.0f , "Clear Filters" );
-	//GenreButton* m_active_button = nullptr;
 	Slider* m_active_sliderFrom = nullptr;
 	Slider* m_active_sliderTo = nullptr;
 	SearchBar* m_active_searchBar = nullptr;
@@ -36,7 +35,7 @@ public:
 	std::vector<GenreButton*> filmGenres = { Drama,History ,SciFi ,Action ,Crime ,Fantasy ,Adventure };
 	float anim = 0;
 	Dock();
-	~Dock();
+	~Dock() {};
 	void update();
 	void draw();
 };

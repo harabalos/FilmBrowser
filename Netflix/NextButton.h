@@ -7,7 +7,7 @@ class NextButton:public Button
 	bool dir;
 public:
 	NextButton(bool dir);
-	~NextButton();
+	~NextButton() {};
 	void draw() override;
 	void update() override;
 };

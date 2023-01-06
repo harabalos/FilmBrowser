@@ -8,7 +8,7 @@
 class FilmBrowser
 {
 public:
-	enum film_state {START,IDLE,DRAMA,HISTORY,SCIFI,ACTION,CRIME,FANTASY,ADVENTURE};
+	enum film_state {START,DRAMA,HISTORY,SCIFI,ACTION,CRIME,FANTASY,ADVENTURE};
 	GenreButton* Drama = new GenreButton("Drama");
 	GenreButton* History = new GenreButton("History");
 	GenreButton* SciFi = new GenreButton("SciFi");
@@ -17,7 +17,7 @@ public:
 	GenreButton* Fantasy = new GenreButton("Fantasy");
 	GenreButton* Adventure = new GenreButton("Adventure");
 	GenreButton* m_active_button = nullptr;
-	//vector<GenreButton*> filmGenres = {Drama,History ,SciFi ,Action ,Crime ,Fantasy ,Adventure };
+
 protected:
 	static FilmBrowser* m_instance;
 	std::vector<Film*> films;

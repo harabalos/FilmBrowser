@@ -2,20 +2,39 @@
 #include "graphics.h"
 #include "config.h"
 
-bool Button::contains(float x, float y)
-{
-	return distance(x, y, x_pos, y_pos)<20;
-}
-
-bool Button::contains(float x, float y,float z)
-{
-	return distance(x, y, x_pos, y_pos) < z;
-}
-
 bool Button::contains(float x, float y, float x1, float y1,float z)
 {
 	return distance(x, y, x1, y1) < z;
 }
+
+Button::~Button(){}
+
+
+bool Button::contains(float x, float y, float button_size_x, float button_size_y)
+{
+	bool contain = false;
+	float container_x[2]{ x_pos - button_size_x / 2,x_pos + button_size_x / 2 };
+	float container_y[2]{ y_pos - button_size_y / 2,y_pos + button_size_y / 2 };
+	if ((x >= container_x[0] && x <= container_x[1]) && (y >= container_y[0] && y <= container_y[1])) {
+		contain = true;
+	}
+
+	return contain;
+}
+
+bool Button::contains(float x, float y,float x_pos,float y_pos, float button_size_x, float button_size_y)
+{
+	bool contain = false;
+	float container_x[2]{ x_pos - button_size_x / 2,x_pos + button_size_x / 2 };
+	float container_y[2]{ y_pos - button_size_y / 2,y_pos + button_size_y / 2 };
+	if ((x >= container_x[0] && x <= container_x[1]) && (y >= container_y[0] && y <= container_y[1])) {
+		contain = true;
+	}
+
+	return contain;
+}
+
+
 
 
 

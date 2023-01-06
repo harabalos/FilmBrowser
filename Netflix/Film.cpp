@@ -1,3 +1,4 @@
+
 #include "Film.h"
 #include "graphics.h"
 #include "config.h"
@@ -37,7 +38,7 @@ void Film::update()
 		for (char i : getSummary())
 		{
 			phrase1 += i;
-			if (phrase1.size()>70 && i==' ') {
+			if (phrase1.size() > 70 && i == ' ') {
 				graphics::drawText(30, j, 16, phrase1, br);
 				phrase1.erase(0, phrase1.size() - 1);
 				j += 20;
@@ -53,76 +54,75 @@ void Film::update()
 	}
 
 
-		br.fill_color[0] = 1.0f;
-		br.fill_color[1] = 1.0f;
-		br.fill_color[2] = 1.0f;
-		br.fill_opacity = 1.0f;
-		string shotPath = ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot" + to_string(j) + ".png");
-		br.texture = ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot" + to_string(j) + ".png");
-		br.outline_opacity = 1.0f;
-		br.fill_opacity = 1.0f;
-		graphics::drawRect(820, 370, 256, 144, br);
+	br.fill_color[0] = 1.0f;
+	br.fill_color[1] = 1.0f;
+	br.fill_color[2] = 1.0f;
+	br.fill_opacity = 1.0f;
+	string shotPath = ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot" + to_string(j) + ".png");
+	br.texture = ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot" + to_string(j) + ".png");
+	br.outline_opacity = 1.0f;
+	br.fill_opacity = 1.0f;
+	graphics::drawRect(820, 370, 256, 144, br);
 
 
-		if (fileExists((ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot2.png")).c_str()))
+	if (fileExists((ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot2.png")).c_str()))
+	{
+		nextButtonR->draw();
+		nextButtonL->draw();
+
+		nextButtonR->setHighlight(nextButtonR->contains(mx, my, 820, 370,256,144));
+		nextButtonL->setHighlight(nextButtonL->contains(mx, my, 820, 370,256,144));
+
+
+		if (nextButtonL->contains(mx, my,nextButtonL->getX(),nextButtonL->getY(),20))
 		{
-			nextButtonR->draw();
-			nextButtonL->draw();
+			nextButtonL->setHighlight1(true);
+			cur_nxtBut = nextButtonL;
+		}
+		else
+		{
+			nextButtonL->setHighlight1(false);
+		}
 
-			nextButtonR->setHighlight(nextButtonR->contains(mx, my, 820, 370, 120));
-			nextButtonL->setHighlight(nextButtonL->contains(mx, my, 820, 370, 120));
+		if (nextButtonR->contains(mx, my, nextButtonR->getX() + 200, nextButtonL->getY(), 20))
+		{
+			nextButtonR->setHighlight1(true);
+			cur_nxtBut = nextButtonR;
+		}
+		else
+		{
+			nextButtonR->setHighlight1(false);
+		}
 
+		if (ms.button_left_pressed && cur_nxtBut)
+		{
+			m_active_nxtbutton = cur_nxtBut;
+			m_active_nxtbutton->setActive(true);
 
-			if (nextButtonL->contains(mx, my))
+			if (m_active_nxtbutton == nextButtonR)
 			{
-				nextButtonL->setHighlight1(true);
-				cur_nxtBut = nextButtonL;
-			}
-			else
-			{
-				nextButtonL->setHighlight1(false);
-			}
-
-			if (nextButtonR->contains(mx, my, 920, 370, 20))
-			{
-				nextButtonR->setHighlight1(true);
-				cur_nxtBut = nextButtonR;
-			}
-			else
-			{
-				nextButtonR->setHighlight1(false);
-			}
-
-
-			if (ms.button_left_pressed && cur_nxtBut)
-			{
-				m_active_nxtbutton = cur_nxtBut;
-				m_active_nxtbutton->setActive(true);
-
-				if (m_active_nxtbutton == nextButtonR)
+				nextButtonL->setActive(false);
+				j++;
+				if (!fileExists((ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot" + to_string(j) + ".png")).c_str()))
 				{
-					nextButtonL->setActive(false);
-					j++;
-					if (!fileExists((ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot" + to_string(j) + ".png")).c_str()))
-					{
-						j = 1;
-					}
+					j = 1;
 				}
-				else
+			}
+			else
+			{
+				nextButtonR->setActive(false);
+				j--;
+				if (!fileExists((ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot" + to_string(j) + ".png")).c_str()))
 				{
-					nextButtonR->setActive(false);
-					j--;
-					if (!fileExists((ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot" + to_string(j) + ".png")).c_str()))
+					while (!fileExists((ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot" + to_string(last) + ".png")).c_str()))
 					{
-						while (!fileExists((ASSET_PATH + std::string("pic" + to_string(geti()) + "shots\\" + "shot" + to_string(last) + ".png")).c_str()))
-						{
-							last--;
-						}
-						j = last;
+						last--;
 					}
+					j = last;
 				}
 			}
 		}
+	}
 
 
 	for (size_t i = 0; i < getFilmGenre().size(); i++)
@@ -134,19 +134,19 @@ void Film::update()
 
 	for (auto button : getFilmGenre())
 	{
-		if (button->contains(mx, my))
+		if (button->contains(mx, my, button->getsizeX(), button->getsizeY()))
 		{
 			button->setHighlight(true);
 			cur_but = button;
 		}
-    else
+		else
 		{
 			button->setHighlight(false);
 		}
 	}
 
 
-	if (ms.button_left_pressed && cur_but )
+	if (ms.button_left_pressed && cur_but)
 	{
 		m_active_button = cur_but;
 		m_active_button->setActive(true);
@@ -182,7 +182,7 @@ void Film::draw()
 	br.fill_color[1] = 1.0f;
 	br.fill_color[2] = 1.0f;
 	br.fill_opacity = 1.0f;
-	br.texture = ASSET_PATH+std::string("pic" + to_string(geti()) + ".png");
+	br.texture = ASSET_PATH + std::string("pic" + to_string(geti()) + ".png");
 	br.outline_opacity = 0.0f;
 	graphics::drawRect(m_pos[0], m_pos[1], 96, 128, br);
 
@@ -205,7 +205,7 @@ void Film::init(int choice)
 	{
 		graphics::setFont(ASSET_PATH"OpenSans-Semibold.ttf");
 	}
-	else if(choice == 1)
+	else if (choice == 1)
 	{
 		graphics::setFont(ASSET_PATH"OpenSans-Regular.ttf");
 	}
@@ -214,20 +214,17 @@ void Film::init(int choice)
 		graphics::setFont(ASSET_PATH"OpenSans-Light.ttf");
 	}
 
-	for (size_t i = 0; i < getFilmGenre().size(); i++)
+	for (int i = 0; i < getFilmGenre().size(); i++)
 	{
-		getFilmGenre()[i]->setX(58 + (i * 63));
-		getFilmGenre()[i]->setY(285 );
+		getFilmGenre()[i]->setX(58 + (i * 63.0f));
+		getFilmGenre()[i]->setY(285);
 
 	}
 }
 
-Film::Film(std::string name, int productionDate, std::string director, std::string protagonist, std::vector<GenreButton*> filmGenre, std::string summary,int i)
-	:name{ name }, productionDate{ productionDate }, director{ director }, protagonist{ protagonist }, filmGenre{ filmGenre }, summary{ summary }, i{i} {}
+Film::Film(std::string name, int productionDate, std::string director, std::string protagonist, std::vector<GenreButton*> filmGenre, std::string summary, int i)
+	:name{ name }, productionDate{ productionDate }, director{ director }, protagonist{ protagonist }, filmGenre{ filmGenre }, summary{ summary }, i{ i } {}
 
-Film::~Film()
-{
-}
 
 std::string Film::getName() {
 	return name;
@@ -264,22 +261,29 @@ int Film::geti()
 }
 
 
-bool Film::contains(float x, float y)
+bool Film::contains(float x, float y, float button_size_x, float button_size_y)
 {
-	return distance(x, y, m_pos[0], m_pos[1]) < 50;
+	bool contain = false;
+	float container_x[2]{ m_pos[0] - button_size_x / 2,m_pos[0] + button_size_x / 2 };
+	float container_y[2]{ m_pos[1] - button_size_y / 2,m_pos[1] + button_size_y / 2 };
+	if ((x >= container_x[0] && x <= container_x[1]) && (y >= container_y[0] && y <= container_y[1])) {
+		contain = true;
+	}
+
+	return contain;
 }
 
 bool Film::fileExists(const char* path)
 {
-	
-		const char* dir = path;
-		struct stat sb;
-		if (stat(dir, &sb) == 0)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+
+	const char* dir = path;
+	struct stat sb;
+	if (stat(dir, &sb) == 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

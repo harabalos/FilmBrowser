@@ -6,9 +6,6 @@
 Dock::Dock()
     :Button{ x_pos = 500 , y_pos = -110,size_x = CANVAS_WIDTH / 2, size_y = CANVAS_WIDTH / 4, r_color = 1.0f, g_color = 1.0f, b_color = 1.0f }{}
 
-Dock::~Dock()
-{
-}
 
 void Dock::update()
 {
@@ -30,9 +27,9 @@ void Dock::update()
             clearbutton->setY(60*anim);
             sliderFrom->setY(150 * anim);
             sliderTo->setY(170 * anim);
-            titleSearch->setY(137 * anim);
-            actorSearch->setY(162 * anim);
-            directorSearch->setY(187 * anim);
+            titleSearch->setY(135 * anim);
+            actorSearch->setY(160 * anim);
+            directorSearch->setY(185 * anim);
             Drama->setY(70 * anim);
             History->setY(70 * anim);
             SciFi->setY(70 * anim);
@@ -77,7 +74,7 @@ void Dock::update()
 
     }
 
-    if (clearbutton->contains(mx, my))
+    if (clearbutton->contains(mx, my, clearbutton->getsizeX(), clearbutton->getsizeY()))
     {
         clearbutton->setHighlight(true);
         cur_clearButton = clearbutton;
@@ -97,7 +94,7 @@ void Dock::update()
         clearbutton->setActive(false);
     }
 
-    if (sliderFrom->contains(mx, my,10))
+    if (sliderFrom->contains(mx, my,sliderFrom->getsizeX(),sliderFrom->getsizeY()))
     {
         sliderFrom->setHighlight(true);
         cur_SliderFrom = sliderFrom;
@@ -107,7 +104,7 @@ void Dock::update()
         sliderFrom->setHighlight(false);
     }
 
-    if (sliderTo->contains(mx, my,10))
+    if (sliderTo->contains(mx, my,sliderTo->getsizeX(),sliderTo->getsizeY()))
     {
         sliderTo->setHighlight(true);
         cur_SliderTo = sliderTo;
@@ -170,7 +167,7 @@ void Dock::update()
         }
     }
 
-    if (ms.button_left_released && cur_SliderTo)
+    if (ms.button_left_released && m_active_sliderTo)
     {
         m_active_sliderTo->setActive(false);
         m_active_sliderTo = nullptr;
@@ -185,7 +182,7 @@ void Dock::update()
 
     for (auto sb : searchbars)
     {
-        if (sb->contains(mx, my))
+        if (sb->contains(mx, my,sb->getsizeX(),sb->getsizeY()))
         {
             sb->setHighlight(true);
             cur_searchBar = sb;

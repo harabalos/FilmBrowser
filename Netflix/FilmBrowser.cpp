@@ -20,7 +20,7 @@ void FilmBrowser::update()
     GenreButton* cur_but = nullptr;
     for (auto film : films)
     {
-        if (film->contains(mx, my) && !dock->getActive())
+        if (film->contains(mx, my,96,128) && !dock->getActive())
         {
             film->setHighlight(true);
             cur_film = film;
@@ -32,11 +32,11 @@ void FilmBrowser::update()
 
     }
 
-    if (dock->contains(mx, my,500,5,40))
+    if (dock->contains(mx, my,dock->getsizeX(),dock->getsizeY()))
     {
         dock->setActive(true);
     }
-    else if (!dock->contains(mx, my, 500, 5, 270))
+    else
     {
         dock->setActive(false);
     }
@@ -58,7 +58,7 @@ void FilmBrowser::update()
 
     for (auto button : dock->filmGenres)
     {
-        if (button->contains(mx, my))
+        if (button->contains(mx, my,button->getsizeX(),button->getsizeY()))
         {
             button->setHighlight(true);
             cur_but = button;
@@ -184,20 +184,21 @@ void FilmBrowser::draw()
 
     switch (state)
     {
+
     case START:
         filterFilms(allFilms);
         for (int i = 0; i < allFilms.size(); i++)
         {
-            allFilms[i]->setX((86) + (i * 104));
+            allFilms[i]->setX((86) + (i * 104.0f));
             allFilms[i]->setY(100);
         }
-
+        
         break;
     case DRAMA:
         filterFilms(dramaFilms);
         for (int i = 0; i < dramaFilms.size(); i++)
         {
-            dramaFilms[i]->setX((320) + (i * 104));
+            dramaFilms[i]->setX((320) + (i * 104.0f));
             dramaFilms[i]->setY(100);
         }
         break;
@@ -205,7 +206,7 @@ void FilmBrowser::draw()
         filterFilms(historyFilms);
         for (int i = 0; i < historyFilms.size(); i++)
         {
-            historyFilms[i]->setX((420) + (i * 104));
+            historyFilms[i]->setX((420) + (i * 104.0f));
             historyFilms[i]->setY(100);
         }
         break;
@@ -213,7 +214,7 @@ void FilmBrowser::draw()
         filterFilms(scifiFilms);
         for (int i = 0; i < scifiFilms.size(); i++)
         {
-            scifiFilms[i]->setX((480) + (i * 104));
+            scifiFilms[i]->setX((480) + (i * 104.0f));
             scifiFilms[i]->setY(100);
         }
         break;
@@ -221,7 +222,7 @@ void FilmBrowser::draw()
         filterFilms(actionFilms);
         for (int i = 0; i < actionFilms.size(); i++)
         {
-            actionFilms[i]->setX((280) + (i * 104));
+            actionFilms[i]->setX((280) + (i * 104.0f));
             actionFilms[i]->setY(100);
         }
         break;
@@ -229,7 +230,7 @@ void FilmBrowser::draw()
         filterFilms(crimeFilms);
         for (int i = 0; i < crimeFilms.size(); i++)
         {
-            crimeFilms[i]->setX((480) + (i * 104));
+            crimeFilms[i]->setX((480) + (i * 104.0f));
             crimeFilms[i]->setY(100);
         }
         break;
@@ -237,7 +238,7 @@ void FilmBrowser::draw()
         filterFilms(fantasyFilms);
         for (int i = 0; i < fantasyFilms.size(); i++)
         {
-            fantasyFilms[i]->setX((420) + (i * 104));
+            fantasyFilms[i]->setX((420) + (i * 104.0f));
             fantasyFilms[i]->setY(100);
         }
         break;
@@ -245,7 +246,7 @@ void FilmBrowser::draw()
         filterFilms(adventureFilms);
         for (int i = 0; i < adventureFilms.size(); i++)
         {
-            adventureFilms[i]->setX((320) + (i * 104));
+            adventureFilms[i]->setX((320) + (i * 104.0f));
             adventureFilms[i]->setY(100);
         }
         break;
@@ -347,6 +348,7 @@ void FilmBrowser::filterFilms(std::vector<Film*> f)
         {
             films[i]->draw();
         }
+
     }
     for (size_t i = 0; i < films.size(); i++)
     {
@@ -355,11 +357,13 @@ void FilmBrowser::filterFilms(std::vector<Film*> f)
             if (dock->sliderFrom->yearsFrom<films[i]->getProductionDate() && dock->sliderTo->yearsTo > films[i]->getProductionDate()
                 && (dock->titleSearch->str == "" || lowerCase(films[i]->getName()).find(dock->titleSearch->str) != string::npos)
                 && (dock->actorSearch->str == "" || lowerCase(films[i]->getProtagonist()).find(dock->actorSearch->str) != string::npos)
-                    && (dock->directorSearch->str == "" || lowerCase(films[i]->getDirector()).find(dock->directorSearch->str) != string::npos)) //ARGEI POLU ME AFTO
-            
+                && (dock->directorSearch->str == "" || lowerCase(films[i]->getDirector()).find(dock->directorSearch->str) != string::npos)) //ARGEI POLU ME AFTO
+
             {
                 films[i]->update();
             }
+
+
         }
     }
 }

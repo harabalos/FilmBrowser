@@ -5,6 +5,7 @@
 #define WINDOW_HEIGHT 650
 #define CANVAS_WIDTH 1000
 #define CANVAS_HEIGHT 500
+#define RAND0TO9() (rand()%10)
 inline float distance(float x1, float y1, float x2, float y2)
 {
 	float dx = x1 - x2;

@@ -5,11 +5,6 @@
 NextButton::NextButton(bool dir)
 	:Button{ x_pos = 720 , y_pos = 370,size_x = 28, size_y = 28, r_color = 1.0f, g_color = 1.0f, b_color = 1.0f }, dir{ dir } {}
 
-NextButton::~NextButton()
-{
-}
-
-
 void NextButton::update()
 {
 
