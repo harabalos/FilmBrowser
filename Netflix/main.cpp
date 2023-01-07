@@ -18,8 +18,10 @@ void draw()
 int main(int argc,char ** argv)
 {
     FilmBrowser* fb = FilmBrowser::getInstance();
+    //initialization
     fb->init();
 
+    //creates window
     graphics::createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "FilmBrowser");
 
     graphics::setDrawFunction(draw);

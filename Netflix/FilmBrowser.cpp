@@ -5,24 +5,33 @@
 #include "Button.h"
 #include <algorithm>
 
+//variable that helps us set the first film as active
 bool startingFilm = true;
+//variable that helps us run the application faster in the first load
 bool firstLoad = true;
 FilmBrowser* FilmBrowser::m_instance = nullptr;
 void FilmBrowser::update()
 {
 
+    //get the coordinates of the mouse
     graphics::MouseState ms;
     graphics::getMouseState(ms);
 
     float mx = graphics::windowToCanvasX(ms.cur_pos_x);
     float my = graphics::windowToCanvasX(ms.cur_pos_y);
 
+    //helps us get if a film is highlighted
     Film* cur_film = nullptr;
+    //same but for the genre button
     GenreButton* cur_but = nullptr;
+
+
+    //check if we hover over each film while the dock is inactive
     for (auto film : films)
     {
         if (film->contains(mx, my,96,128) && !dock->getActive())
         {
+            //if we do set the film as highlighted
             film->setHighlight(true);
             cur_film = film;
         }
@@ -33,8 +42,10 @@ void FilmBrowser::update()
 
     }
 
+    //checks if we hover over the coordinates of the dock
     if (dock->contains(mx, my,dock->getsizeX(),dock->getsizeY()))
     {
+        //if we do set it active
         dock->setActive(true);
     }
     else
@@ -42,11 +53,15 @@ void FilmBrowser::update()
         dock->setActive(false);
     }
 
+    //checks if we click the film
     if (ms.button_left_pressed && cur_film)
     {
+        //set the current film as active
         m_active_film = cur_film;
         m_active_film->setActive(true);
+        //play sound
         graphics::playSound(ASSET_PATH"browse.wav", 0.5f);
+        //set every other film as inactive
         for (auto film : films)
         {
             if (film != m_active_film)
@@ -57,10 +72,12 @@ void FilmBrowser::update()
         }
     }
 
+    //checks if we hover over the genre buttons inside the dock
     for (auto button : dock->filmGenres)
     {
         if (button->contains(mx, my,button->getsizeX(),button->getsizeY()))
         {
+            //if we do set it as highlighted
             button->setHighlight(true);
             cur_but = button;
         }
@@ -71,12 +88,16 @@ void FilmBrowser::update()
 
     }
 
+    //checks if we click on the button
     if (ms.button_left_pressed && cur_but)
     {
+        //set it active
         m_active_button = cur_but;
         m_active_button->setActive(true);
+        //play sound
         graphics::playSound(ASSET_PATH"button.wav", 0.5f);
 
+        //set every other button as inactive
         for (auto button : dock->filmGenres)
         {
             if (button != m_active_button)
@@ -87,11 +108,15 @@ void FilmBrowser::update()
     }
 
 
-
+    //checks if the buttons of each film is active or the genre buttons of the dock is active
+    //if it is then the state changes
+    //startingFilm variable is being set as true because we want to show the first movie again
+    //buttons are set as null
     for (auto film : films)
     {
         if (film->m_active_button == Drama || m_active_button == dock->Drama)
         {
+
             state = DRAMA;
             startingFilm = true;
             m_active_button = nullptr;
@@ -148,8 +173,10 @@ void FilmBrowser::update()
 
     }
 
+    //checks if the clear button in the dock is active
     if (dock->clearbutton->getActive())
     {
+        //if it is the state changes, and everything is being resetted
         state = START;
         for (auto sb : dock->searchbars)
         {
@@ -181,14 +208,15 @@ void FilmBrowser::draw()
 
 
 
-    //draw film
-
+    //draw films but it depends on which state there is
+    //calls the filterFilm function and sets the coordinates of each film.
     switch (state)
     {
     case START:
+        //checks if the application is opened first, just to open it quickly and not process all these big function.
         if (firstLoad)
         {
-
+            //shows the first film
             if (startingFilm)
             {
                 m_active_film = allFilms[0];
@@ -197,6 +225,7 @@ void FilmBrowser::draw()
             }
             for (size_t i = 0; i < allFilms.size(); i++)
             {
+                //draw and update each film
                 allFilms[i]->draw();
                 if (allFilms[i] == m_active_film)
                 {
@@ -208,8 +237,11 @@ void FilmBrowser::draw()
         }
         else
         {
+            //filter
             filterFilms(allFilms);
         }
+
+        //sets the coordinates
         for (int i = 0; i < allFilms.size(); i++)
         {
             allFilms[i]->setX((86) + (i * 104.0f));
@@ -277,7 +309,7 @@ void FilmBrowser::draw()
         break;
     }
 
-
+    //draws and updates the dock
     dock->draw();
     dock->update();
 
@@ -288,7 +320,7 @@ void FilmBrowser::draw()
 
 void FilmBrowser::init()
 {
-
+    //initialization of the allFilms vector that has everything in it
     allFilms.push_back(new Film("Fight Club", 1999, "David Fincher", "Brad Pitt,Edward Norton", { Drama}, "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.",0));
     allFilms.push_back(new Film("Schindler's List", 1993, "Steven Spielberg", "Liam Neeson, Ralph Fiennes, Ben Kingsley", { Drama,History }, "In German - occupied Poland during World War II, industrialist Oskar Schindler gradually becomes concerned for his Jewish workforce after witnessing their persecution by the Nazis.",1));
     allFilms.push_back(new Film("The Godfather", 1972, "Francis Ford Coppola", "Al Pacino,James Caan,Marlon Brando", { Drama,History }, "The aging patriarch of an organized crime dynasty in postwar New York City transfers control of his clandestine empire to his reluctant youngest son.",2));
@@ -299,6 +331,7 @@ void FilmBrowser::init()
     allFilms.push_back(new Film("Star Wars:Episode IV- A New Hope", 1977, "George Lucas", "CarrieFisher, Harrison Ford, Mark Hamill", { Action,Fantasy, Adventure }, "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.",7));
     allFilms.push_back(new Film("Star Wars:Episode V-The Empire Strikes Back", 1980, "Irvin Kershner", "Carrie Fisher, Harrison Ford, Mark Hamill", { Action,Fantasy, Adventure }, "After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued across the galaxy by Darth Vader andbounty hunter BobaFett.",8));
 
+    //initialization of each genre vector
     for (size_t i = 0; i < allFilms.size(); i++)
     {
         for (size_t j = 0; j < allFilms[i]->getFilmGenre().size(); j++)
@@ -337,6 +370,7 @@ void FilmBrowser::init()
 
 }
 
+//function that returns the instance if it exists or it creates one and returns it
 FilmBrowser* FilmBrowser::getInstance()
 {
     if (!m_instance)
@@ -346,9 +380,12 @@ FilmBrowser* FilmBrowser::getInstance()
     return m_instance;
 }
 
+//function that takes as parameter every genre vector and it filters it depending on the year, the title, the director, the actors
 void FilmBrowser::filterFilms(std::vector<Film*> f)
 {
     films = f;
+
+    //sets every other film as inactive
     for (auto film : films)
     {
         if (film != m_active_film)
@@ -356,15 +393,20 @@ void FilmBrowser::filterFilms(std::vector<Film*> f)
             film->setActive(false);
         }
     }
+    //shows the first film 
     if (startingFilm)
     {
         m_active_film = films[0];
         m_active_film->setActive(true);
         startingFilm = false;
     }
+    
+    //draw
     for (size_t i = 0; i < films.size(); i++)
     {
 
+            //checks if the film is between the given years,checks if we havent typed anything,
+            //  or if we did on the search bar checks if those words are being contained inside the title or actor or director
             if (dock->sliderFrom->yearsFrom<films[i]->getProductionDate() && dock->sliderTo->yearsTo > films[i]->getProductionDate()
                 && (dock->titleSearch->str == "" || lowerCase(films[i]->getName()).find(dock->titleSearch->str) != string::npos)
                 && (dock->actorSearch->str == "" || lowerCase(films[i]->getProtagonist()).find(dock->actorSearch->str) != string::npos)
@@ -381,6 +423,7 @@ void FilmBrowser::filterFilms(std::vector<Film*> f)
     {
         if (films[i] == m_active_film)
         {
+                //same but for update
                 if (dock->sliderFrom->yearsFrom<films[i]->getProductionDate() && dock->sliderTo->yearsTo > films[i]->getProductionDate()
                     && (dock->titleSearch->str == "" || lowerCase(films[i]->getName()).find(dock->titleSearch->str) != string::npos)
                     && (dock->actorSearch->str == "" || lowerCase(films[i]->getProtagonist()).find(dock->actorSearch->str) != string::npos)
@@ -410,12 +453,16 @@ void FilmBrowser::filterFilms(std::vector<Film*> f)
     }
 }
 
+//function that convert the characters of the given string to lowercase
+//we use this function to convert the title, the actor, the director to lowercase
+//to check what we typed is being contained inside those strings
 string FilmBrowser::lowerCase(string str)
 {
     std::transform(str.begin(), str.end(), str.begin(), ::tolower);
     return str;
 }
 
+//destroctur
 FilmBrowser::~FilmBrowser()
 {
     for (auto film : films)

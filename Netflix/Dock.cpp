@@ -10,18 +10,28 @@ Dock::Dock()
 void Dock::update()
 {
 
+
+    //get the coordinates of the mouse
     graphics::MouseState ms;
     graphics::getMouseState(ms);
 
     float mx = graphics::windowToCanvasX(ms.cur_pos_x);
     float my = graphics::windowToCanvasX(ms.cur_pos_y);
 
+
+
+    //variables that helps us set the buttons as highlighted
     GenreButton* cur_clearButton = nullptr;
     Slider* cur_SliderFrom = nullptr;
     Slider* cur_SliderTo = nullptr;
     SearchBar* cur_searchBar = nullptr;
+
+    //if the dock is active, then we set everything inside the dock as a reasonable y coordinate
+    //so we can see it
     if (m_active)
     {
+            //variable that helps as show the dock getting down slowly
+            //animation
             anim += 0.1f;
             setY(95 * anim);
             clearbutton->setY(60*anim);
@@ -37,9 +47,13 @@ void Dock::update()
             Crime->setY(90 * anim);
             Fantasy->setY(90 * anim);
             Adventure->setY(90 * anim);
+
+            //we stop the variable to 1.0
             if (anim > 1.0f) {
                 anim = 1.0f;
             }
+            
+            //play sound
             if (playSoundMax)
             {
                 graphics::playSound(ASSET_PATH"maximize.wav", 0.5f);
@@ -50,6 +64,7 @@ void Dock::update()
     }
     else
     {
+        //same here
         anim = 0.1f;
         setY(-110);
         clearbutton->setY(-90);
@@ -74,6 +89,7 @@ void Dock::update()
 
     }
 
+    //check if we hover over the clear button to get highlighted
     if (clearbutton->contains(mx, my, clearbutton->getsizeX(), clearbutton->getsizeY()))
     {
         clearbutton->setHighlight(true);
@@ -84,6 +100,8 @@ void Dock::update()
         clearbutton->setHighlight(false);
     }
 
+
+    //checks if we press the clear button to set it as active
     if (ms.button_left_pressed && cur_clearButton)
     {
         clearbutton->setActive(true);
@@ -94,6 +112,8 @@ void Dock::update()
         clearbutton->setActive(false);
     }
 
+
+    //check if we hover over the slider from to get highlighted
     if (sliderFrom->contains(mx, my,sliderFrom->getsizeX(),sliderFrom->getsizeY()))
     {
         sliderFrom->setHighlight(true);
@@ -104,6 +124,8 @@ void Dock::update()
         sliderFrom->setHighlight(false);
     }
 
+
+    //same with the slider to
     if (sliderTo->contains(mx, my,sliderTo->getsizeX(),sliderTo->getsizeY()))
     {
         sliderTo->setHighlight(true);
@@ -114,6 +136,7 @@ void Dock::update()
         sliderTo->setHighlight(false);
     }
 
+    //checks if we press the slider from to set it as active
     if (ms.button_left_pressed && cur_SliderFrom)
     {
         sliderFrom->setActive(true);
@@ -124,6 +147,8 @@ void Dock::update()
         sliderFrom->setActive(false);
     }
 
+
+    //checks if we press the slider to to set it as active
     if (ms.button_left_pressed && cur_SliderTo)
     {
         sliderTo->setActive(true);
@@ -134,12 +159,17 @@ void Dock::update()
         sliderTo->setActive(false);
     }
 
+
+    //checks if we drag the slider
     if (ms.dragging && m_active_sliderFrom)
     {
+        //we set the coordinates as our mouse's
         m_active_sliderFrom->setX(mx);
+        //cant go over 390
         if (m_active_sliderFrom->getX() > 390) {
             m_active_sliderFrom->setX(390);
         }
+        //cant go under 300
         else if (m_active_sliderFrom->getX() < 300)
         {
             m_active_sliderFrom->setX(300);
@@ -147,6 +177,8 @@ void Dock::update()
 
     }
 
+
+    //when we release we set the other one as inactive
     if (ms.button_left_released && m_active_sliderFrom)
     {
 
@@ -155,6 +187,8 @@ void Dock::update()
 
     }
 
+
+    //everything same with this one
     if (ms.dragging && m_active_sliderTo)
     {
         m_active_sliderTo->setX(mx);
@@ -174,12 +208,16 @@ void Dock::update()
 
     }
 
+
+    //when we press clear button sliders go to their default coordinates
     if (clearbutton->getActive())
     {
         sliderFrom->setX(300);
         sliderTo->setX(390);
     }
 
+
+    //checks if we hover over the seachbars if we do its getting highlighted
     for (auto sb : searchbars)
     {
         if (sb->contains(mx, my,sb->getsizeX(),sb->getsizeY()))
@@ -194,6 +232,7 @@ void Dock::update()
     }
 
 
+    //checks if we press them, if we do we set them as active and evety other as inactive
     if (ms.button_left_pressed && cur_searchBar)
     {
         m_active_searchBar = cur_searchBar;
@@ -211,8 +250,9 @@ void Dock::update()
 
 void Dock::draw()
 {
-    graphics::Brush br;
 
+    //draw dock
+    graphics::Brush br;
     br.fill_color[0] = r_color;
     br.fill_color[1] = g_color;
     br.fill_color[2] = b_color;

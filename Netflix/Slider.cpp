@@ -8,6 +8,8 @@ Slider::Slider(float x_pos, float y_pos, float size_x, float size_y, float r_col
 void Slider::draw()
 {
 	graphics::Brush br;
+
+	//same animation to show the button is being highlighted
 	float h = r_color + m_highlighted;
 
 	br.fill_color[0] = h;
@@ -17,14 +19,18 @@ void Slider::draw()
 	graphics::drawLine(300, y_pos, 390, y_pos, br);
 	graphics::drawRect(x_pos, y_pos, size_x, size_y, br);
 
+
+	//animation to show when the slider is getting dragged the years on top or down.
 	yearsFrom = ((int)x_pos / 3) + 1870;
 	yearsTo = ((int)x_pos / 3) + 1870;
-		 
+		
+	//if up is true then we draw the years from
 	if (up)
 	{
 		graphics::drawText(x_pos - 10, y_pos - 10, 10, std::to_string(yearsFrom), br);
 
 	}
+	//else the year to
 	else
 	{
 		graphics::drawText(x_pos - 10, y_pos + 20, 10, std::to_string(yearsTo), br);
@@ -35,6 +41,4 @@ void Slider::draw()
 
 }
 
-void Slider::update()
-{
-}
+void Slider::update() {}

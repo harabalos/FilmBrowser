@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 
+//abstract class
 class Widget
 {
 public:

@@ -2,6 +2,8 @@
 #include "graphics.h"
 #include "config.h"
 
+
+//function that helps us checks if the mouse is over the specified coordinates for circle
 bool Button::contains(float x, float y, float x1, float y1,float z)
 {
 	return distance(x, y, x1, y1) < z;
@@ -10,6 +12,7 @@ bool Button::contains(float x, float y, float x1, float y1,float z)
 Button::~Button(){}
 
 
+//function that helps us checks if the mouse is over the specified coordinates for rectangle
 bool Button::contains(float x, float y, float button_size_x, float button_size_y)
 {
 	bool contain = false;
@@ -21,6 +24,8 @@ bool Button::contains(float x, float y, float button_size_x, float button_size_y
 
 	return contain;
 }
+
+//function that helps us checks if the mouse is over the specified coordinates for rectangle
 
 bool Button::contains(float x, float y,float x_pos,float y_pos, float button_size_x, float button_size_y)
 {

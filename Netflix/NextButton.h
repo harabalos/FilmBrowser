@@ -10,4 +10,5 @@ public:
 	~NextButton() {};
 	void draw() override;
 	void update() override;
+
 };

@@ -12,5 +12,4 @@ public:
 	void update() override;
 	std::string getKind();
 
-
 };

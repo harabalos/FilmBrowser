@@ -10,6 +10,7 @@ using namespace std;
 class Film
 {
 private:
+	//initialization of the fields
 	float m_pos[2];
 
 	string name; 
@@ -32,6 +33,8 @@ public:
 	void update();
 	void draw();
 	void init(int choice);
+	
+	//getters
 	int getProductionDate();
 	string getName();
 	string getDirector();
@@ -39,14 +42,15 @@ public:
 	std::vector<GenreButton*>  getFilmGenre();
 	string getSummary();
 	int geti();
+
 	NextButton* nextButtonL = new NextButton(true);
 	NextButton* nextButtonR = new NextButton(false);
 	int j = 1;
 	int last = 6;
 
+	//setters
 	void setX(float x) { m_pos[0] = x; };
 	void setY(float y) { m_pos[1] = y; };
-
 	void setHighlight(bool h) { m_highlighted = h; };
 	void setActive(bool a) { m_active = a; };
 

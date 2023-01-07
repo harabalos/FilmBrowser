@@ -12,4 +12,5 @@ public:
 	~Slider() {};
 	void draw();
 	void update();
+
 };
