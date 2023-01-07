@@ -376,6 +376,7 @@ void FilmBrowser::filterFilms(std::vector<Film*> f)
 
 
     }
+    
     for (size_t i = 0; i < films.size(); i++)
     {
         if (films[i] == m_active_film)
@@ -388,7 +389,21 @@ void FilmBrowser::filterFilms(std::vector<Film*> f)
                 {
                     films[i]->update();
                 }
-
+                else
+                {
+                    //erases the element
+                    films.erase(films.begin() + i);
+                    auto it = find(films.begin(), films.end(), films[i]);
+                    //sets the next element as active
+                    m_active_film = films[i];
+                    //if there is not a next element activate the first one
+                    if (films.end() == it)
+                    {
+                        m_active_film = films[0];
+                    }
+                    //for the effect
+                    m_active_film->setActive(true);
+                }
 
 
         }

@@ -17,7 +17,6 @@ public:
 	GenreButton* Fantasy = new GenreButton("Fantasy");
 	GenreButton* Adventure = new GenreButton("Adventure");
 	GenreButton* m_active_button = nullptr;
-
 protected:
 	static FilmBrowser* m_instance;
 	std::vector<Film*> films;
