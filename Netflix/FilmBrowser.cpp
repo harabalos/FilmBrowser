@@ -6,6 +6,7 @@
 #include <algorithm>
 
 bool startingFilm = true;
+bool firstLoad = true;
 FilmBrowser* FilmBrowser::m_instance = nullptr;
 void FilmBrowser::update()
 {
@@ -184,9 +185,31 @@ void FilmBrowser::draw()
 
     switch (state)
     {
-
     case START:
-        filterFilms(allFilms);
+        if (firstLoad)
+        {
+
+            if (startingFilm)
+            {
+                m_active_film = allFilms[0];
+                m_active_film->setActive(true);
+                startingFilm = false;
+            }
+            for (size_t i = 0; i < allFilms.size(); i++)
+            {
+                allFilms[i]->draw();
+                if (allFilms[i] == m_active_film)
+                {
+                    allFilms[i]->update();
+
+                }
+            }
+            firstLoad = false;
+        }
+        else
+        {
+            filterFilms(allFilms);
+        }
         for (int i = 0; i < allFilms.size(); i++)
         {
             allFilms[i]->setX((86) + (i * 104.0f));
@@ -341,27 +364,31 @@ void FilmBrowser::filterFilms(std::vector<Film*> f)
     }
     for (size_t i = 0; i < films.size(); i++)
     {
-        if (dock->sliderFrom->yearsFrom<films[i]->getProductionDate()&& dock->sliderTo->yearsTo > films[i]->getProductionDate()
-            &&(dock->titleSearch->str == "" || lowerCase(films[i]->getName()).find(dock->titleSearch->str) != string::npos)
-            && (dock->actorSearch->str == "" || lowerCase(films[i]->getProtagonist()).find(dock->actorSearch->str) != string::npos)
+
+            if (dock->sliderFrom->yearsFrom<films[i]->getProductionDate() && dock->sliderTo->yearsTo > films[i]->getProductionDate()
+                && (dock->titleSearch->str == "" || lowerCase(films[i]->getName()).find(dock->titleSearch->str) != string::npos)
+                && (dock->actorSearch->str == "" || lowerCase(films[i]->getProtagonist()).find(dock->actorSearch->str) != string::npos)
                 && (dock->directorSearch->str == "" || lowerCase(films[i]->getDirector()).find(dock->directorSearch->str) != string::npos)) //ARGEI POLU ME AFTO
-        {
-            films[i]->draw();
-        }
+            {
+                films[i]->draw();
+            }
+       
+
 
     }
     for (size_t i = 0; i < films.size(); i++)
     {
         if (films[i] == m_active_film)
         {
-            if (dock->sliderFrom->yearsFrom<films[i]->getProductionDate() && dock->sliderTo->yearsTo > films[i]->getProductionDate()
-                && (dock->titleSearch->str == "" || lowerCase(films[i]->getName()).find(dock->titleSearch->str) != string::npos)
-                && (dock->actorSearch->str == "" || lowerCase(films[i]->getProtagonist()).find(dock->actorSearch->str) != string::npos)
-                && (dock->directorSearch->str == "" || lowerCase(films[i]->getDirector()).find(dock->directorSearch->str) != string::npos)) //ARGEI POLU ME AFTO
+                if (dock->sliderFrom->yearsFrom<films[i]->getProductionDate() && dock->sliderTo->yearsTo > films[i]->getProductionDate()
+                    && (dock->titleSearch->str == "" || lowerCase(films[i]->getName()).find(dock->titleSearch->str) != string::npos)
+                    && (dock->actorSearch->str == "" || lowerCase(films[i]->getProtagonist()).find(dock->actorSearch->str) != string::npos)
+                    && (dock->directorSearch->str == "" || lowerCase(films[i]->getDirector()).find(dock->directorSearch->str) != string::npos)) //ARGEI POLU ME AFTO
 
-            {
-                films[i]->update();
-            }
+                {
+                    films[i]->update();
+                }
+
 
 
         }
