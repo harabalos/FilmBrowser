@@ -27,10 +27,6 @@ Sound playing when:
 
 We also implemented 20+ animations for better experience!
 
-Contributions
----------------------
-We welcome any contributions to the project. If you would like to contribute, please fork the repository and submit a pull request.
-
 What We Gained
 ---------------------
 This project was a great opportunity for us to improve our skills in C++ programming. We gained experience in using a GUI library and implementing a functional application. Additionally, we improved our understanding of software development principles such as debugging and testing. Overall, this project was a great learning experience for both of us.
