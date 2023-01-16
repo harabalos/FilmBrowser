@@ -2,13 +2,24 @@ Film Browser
 ----------------------
 Film Browser is a C++ application created by Charalampos Metaxas and Marios Xiwnis for the 3rd semester project at Athens University of Economics and Business (AUEB).
 
-The application allows users to browse and search for films (by genre, date ,as well as by typing the title, the director, or the stars of the film), view detailed information about them. It uses the sgg library for its graphical user interface.
+The application allows users to browse and search for films, view detailed information about them. It uses the sgg library for its graphical user interface.
 
 To use the application, clone the repository and compile the source code using a C++ compiler. Once compiled, run the executable file to launch the application.
 
 Please note that the sgg library must be installed on your system for the application to run properly.
 
 We hope you enjoy using Film Browser!
+
+Features
+---------------------
+search by:
+- genre
+- date
+- title
+- director
+- actors
+
+We also implemented many animations for better experience!
 
 Contributions
 ---------------------
