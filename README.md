@@ -34,3 +34,10 @@ We welcome any contributions to the project. If you would like to contribute, pl
 What We Gained
 ---------------------
 This project was a great opportunity for us to improve our skills in C++ programming. We gained experience in using a GUI library and implementing a functional application. Additionally, we improved our understanding of software development principles such as debugging and testing. Overall, this project was a great learning experience for both of us.
+
+
+Sreenshot
+--------------
+<img width="1287" alt="Screenshot 2023-01-17 at 12 40 44 AM" src="https://user-images.githubusercontent.com/92236091/212776074-bf5d4f5a-7348-4f73-a539-60091b43271c.png">
+
+<img width="1225" alt="Screenshot 2023-01-17 at 12 41 03 AM" src="https://user-images.githubusercontent.com/92236091/212775978-b2514404-d52e-4127-b1b2-e4dc29e27695.png">
