@@ -1,6 +1,6 @@
 Film Browser
 ----------------------
-Film Browser is a C++ application created by Charalampos Metaxas and Marios Xiwnis for the 3rd semester project at Athens University of Economics and Business (AUEB).
+Film Browser is a C++ application created by [Charalampos Metaxas](https://github.com/harabalos) and [Marios Xiwnis](https://github.com/MariosChionis) for the 3rd semester project at Athens University of Economics and Business (AUEB).
 
 The application allows users to browse and search for films, view detailed information about them. It uses the sgg library for its graphical user interface.
 
