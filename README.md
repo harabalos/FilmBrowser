@@ -12,14 +12,20 @@ We hope you enjoy using Film Browser!
 
 Features
 ---------------------
-search by:
+Search by:
 - genre
 - date
 - title
 - director
 - actors
 
-We also implemented many animations for better experience!
+Sound playing when:
+- you press a button
+- press a film
+- hover over filter dock
+- hover out of the filter dock
+
+We also implemented 20+ animations for better experience!
 
 Contributions
 ---------------------
